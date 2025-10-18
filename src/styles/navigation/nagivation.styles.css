@@ -9,7 +9,9 @@
 .tab_button {
     background-color: inherit;
     cursor: pointer;
-    color: black;
+    color: #594f34;
+    border-width: 2px;
+    font-family: "Work Sans";
     font-size: 18pt;
 }
 .tab_button:hover {
