@@ -1,0 +1,51 @@
+.home {
+    background-color: white;
+    display: flex;
+}
+
+.profile_info {
+    background-color: white;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    padding: 100px;
+    gap: 10px;
+    justify-content: center;
+}
+.work_button {
+    background-color: blanchedalmond;
+    cursor: pointer;
+    color: #403930;
+    border-width: 3px;
+    font-family: "Work Sans";
+    font-size: 20pt;
+}
+.work_button:hover {
+    border-color: #594f34;
+}
+.contact_button {
+    border-color: blanchedalmond;
+    border-width: 3px;
+    background-color: white;
+    cursor: pointer;
+    color: #594f34;
+    font-family: "Work Sans";
+    font-size: 20pt;
+}
+.contact_button:hover {
+    border-color: #594f34;
+}
+h1 {
+    font-family: "Eczar";
+    font-size: 50pt;
+    color: #403930;
+    margin: 0;
+}
+.typewriter-text {
+    font-family: "Eczar";
+    font-size: 40pt;
+    line-height: 1.1;
+    color: #403930;
+    margin: 0;
+    /* TODO: Text may overflow to right graphic */
+}
