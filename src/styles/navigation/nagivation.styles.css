@@ -1,0 +1,17 @@
+.bar {
+    height: 80px;
+    display: flex;
+    background-color: white;
+    align-items: center;
+    gap: 20px;
+}
+
+.tab_button {
+    background-color: inherit;
+    cursor: pointer;
+    color: black;
+    font-size: 18pt;
+}
+.tab_button:hover {
+    border-color: #f8cf9e;
+}
