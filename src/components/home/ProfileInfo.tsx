@@ -34,6 +34,7 @@ function ProfileInfo() {
                     autoStart: true,
                     loop: false,
                     deleteSpeed: 0,
+                    delay: 70,
                     cursor: "|",
                     wrapperClassName: "typewriter-text",
                 }}
