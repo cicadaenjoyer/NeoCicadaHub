@@ -3,6 +3,7 @@ import "../../styles/navigation/nagivation.styles.css";
 
 // Components
 import TabButton from "./TabButton";
+import MVPlayer from "./MVPlayer";
 
 // Hooks
 import useWindowDimensions from "../../hooks/WindowDimensions";
@@ -22,6 +23,7 @@ function NavigationBar() {
             <TabButton label="Work" />
             <TabButton label="Projects" />
             <TabButton label="About" />
+            <MVPlayer />
         </div>
     );
 }

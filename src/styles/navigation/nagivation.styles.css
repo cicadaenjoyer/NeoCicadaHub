@@ -17,3 +17,8 @@
 .tab_button:hover {
     border-color: #f8cf9e;
 }
+
+.mv_player {
+    margin-left: auto;
+    padding-right: 1%;
+}
