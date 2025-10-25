@@ -1,3 +1,7 @@
+-   Navigation
+    -   Add redirects on button click events
 -   Home
-    -   Add music player
-    -   Add popup window when work button is clicked
+    -   Add redirect on work button click event
+-   Work Screen
+-   Projects Screen
+-   About Screen
