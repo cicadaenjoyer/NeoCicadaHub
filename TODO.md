@@ -1,5 +1,6 @@
 -   Navigation
     -   Add redirects on button click events
+    -   Load music from youtube links
 -   Home
     -   Add redirect on work button click event
 -   Work Screen
