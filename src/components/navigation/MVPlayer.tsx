@@ -63,6 +63,7 @@ function MVPlayer() {
 
             if (songRef.current) {
                 songRef.current.play();
+                songRef.current.volume = 0.3;
                 setIsPlaying(true);
             }
         }
@@ -96,12 +97,13 @@ function MVPlayer() {
         if (songRef.current) {
             if (isPlaying) {
                 songRef.current.pause();
+                setIcon(equalizer.pause);
                 setIsPlaying(false);
-                setIcon(equalizer_anim);
             } else {
                 songRef.current.play();
+                songRef.current.volume = 0.3;
+                setIcon(equalizer.play);
                 setIsPlaying(true);
-                setIcon(equalizer_static);
             }
         }
     };
