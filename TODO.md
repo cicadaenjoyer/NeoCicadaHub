@@ -1,0 +1,3 @@
+-   Home
+    -   Add music player
+    -   Add popup window when work button is clicked

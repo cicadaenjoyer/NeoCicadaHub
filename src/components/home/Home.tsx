@@ -3,6 +3,7 @@ import "../../styles/home/home.styles.css";
 
 // Components
 import ProfileInfo from "./ProfileInfo";
+import ProfileHeadshot from "./ProfileHeadshot";
 
 // Hooks
 import useWindowDimensions from "../../hooks/WindowDimensions";
@@ -22,6 +23,7 @@ function Home() {
             className="home"
         >
             <ProfileInfo />
+            <ProfileHeadshot />
         </div>
     );
 }
