@@ -1,6 +1,11 @@
 // Styling
 import "../../styles/home/home.styles.css";
 
+interface ProfileButtonProps {
+    label: string;
+    onClick?: () => void;
+}
+
 /**
  * Renders a styled profile button for the home section.
  * Displays a label and handles click events based on the label value:
@@ -9,31 +14,12 @@ import "../../styles/home/home.styles.css";
  *
  * @param {Object} props - The props for ProfileButton.
  * @param {string} props.label - The text displayed on the button.
+ * @param {() => void} [props.onClick] - Optional callback function to execute when the button is clicked
  * @returns {JSX.Element} The profile button component.
  */
-
-interface ProfileButtonProps {
-    label: string;
-}
-
-function ProfileButton({ label }: ProfileButtonProps) {
-    const workClick = () => {
-        console.log("NOTE: Should redirect user to 'Work' section");
-    };
-    const contactClick = () => {
-        console.log(
-            "NOTE: Should give a pop-up window with linkedin and email"
-        );
-    };
-    const handleClick =
-        label.toLocaleLowerCase().trim() === "work" ? workClick : contactClick;
-    const buttonClass =
-        label.toLocaleLowerCase().trim() === "work"
-            ? "work_button"
-            : "contact_button";
-
+function ProfileButton({ label, onClick }: ProfileButtonProps) {
     return (
-        <button className={buttonClass} onClick={handleClick}>
+        <button className={label.toLocaleLowerCase().trim()} onClick={onClick}>
             {label}
         </button>
     );
