@@ -1,0 +1,63 @@
+/* Main Work Styles */
+.work {
+    background-color: #fbfaff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.work > * {
+    padding-left: 3%;
+    padding-top: 2%;
+    padding-bottom: 1%;
+}
+
+/* Banner */
+.banner {
+    font-family: "Eczar";
+    font-size: 35pt;
+    color: #403930;
+    align-self: flex-start;
+}
+
+/* Work Item */
+.work_item {
+    height: auto;
+    background-color: white;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+/* Work/Job Information */
+.work_info {
+    width: 50%;
+    font-family: "Work Sans";
+    color: #403930;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.work_info_title {
+    font-size: 20pt;
+    font-weight: 700;
+}
+.work_info_desc {
+    font-size: 12pt;
+    font-weight: 400;
+}
+
+/* Work/Job Logo*/
+.work_view {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.work_view_img {
+    max-width: 250px;
+    max-height: 100%;
+    object-fit: cover;
+}
