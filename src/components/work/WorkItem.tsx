@@ -9,14 +9,16 @@ import WorkView from "./WorkView";
 import useWindowDimensions from "../../hooks/WindowDimensions";
 
 /**
- * Renders a styled tab button for navigation.
- * The button displays a label and logs a navigation message when clicked.
+ * Renders a single work experience item with job information and company logo.
+ * Dynamically adjusts width based on window dimensions and displays job details
+ * alongside the company's visual branding.
  *
- * @param {Object} props - The props for TabButton.
- * @param {string} props.label - The text displayed on the button.
- * @returns {JSX.Element} The tab button component.
+ * @param {Object} props - The props for WorkItem.
+ * @param {string} props.title - The job title or position name.
+ * @param {string} props.desc - The job description or responsibilities.
+ * @param {string} props.logo - The filename of the company logo image.
+ * @returns {JSX.Element} The work item component.
  */
-
 interface WorkItemProps {
     title: string;
     desc: string;

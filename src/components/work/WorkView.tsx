@@ -10,14 +10,13 @@ const logoModules = import.meta.glob<{ default: string }>(
 );
 
 /**
- * Renders a styled tab button for navigation.
- * The button displays a label and logs a navigation message when clicked.
+ * Renders the visual/logo section for a work experience item.
+ * Dynamically imports and displays company logos from the work images directory.
  *
- * @param {Object} props - The props for TabButton.
- * @param {string} props.label - The text displayed on the button.
- * @returns {JSX.Element} The tab button component.
+ * @param {Object} props - The props for WorkView.
+ * @param {string} props.filename - The filename of the company logo (e.g., "rit.png").
+ * @returns {JSX.Element} The work view component.
  */
-
 interface WorkViewProps {
     filename: string;
 }
@@ -25,10 +24,6 @@ interface WorkViewProps {
 function WorkView({ filename }: WorkViewProps) {
     const fullPath = `../../assets/images/work/${filename}`;
     const logo = logoModules[fullPath]?.default;
-
-    console.log(filename);
-
-    console.log(logo);
 
     return (
         <div className="work_view">

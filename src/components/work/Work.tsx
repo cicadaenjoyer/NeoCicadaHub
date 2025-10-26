@@ -3,7 +3,6 @@ import "../../styles/work/work.styles.css";
 
 // Components
 import WorkItem from "./WorkItem";
-import WorkView from "./WorkView";
 
 // Hooks
 import useWindowDimensions from "../../hooks/WindowDimensions";
@@ -12,10 +11,11 @@ import useWindowDimensions from "../../hooks/WindowDimensions";
 import { jobs } from "../../assets/constants";
 
 /**
- * Renders the main navigation bar with tab buttons for different sections.
- * The navigation bar's width dynamically adjusts to the current window dimensions.
+ * Renders the work experience section displaying professional job history.
+ * Dynamically adjusts dimensions based on window size and maps through job data
+ * to display individual work items with titles, descriptions, and company logos.
  *
- * @returns {JSX.Element} The navigation bar component.
+ * @returns {JSX.Element} The work section component.
  */
 function Work() {
     const { width, height } = useWindowDimensions();

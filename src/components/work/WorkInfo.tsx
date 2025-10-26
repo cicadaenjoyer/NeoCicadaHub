@@ -2,14 +2,14 @@
 import "../../styles/work/work.styles.css";
 
 /**
- * Renders a styled tab button for navigation.
- * The button displays a label and logs a navigation message when clicked.
+ * Renders the information section for a work experience item.
+ * Displays the job title and description in a formatted layout.
  *
- * @param {Object} props - The props for TabButton.
- * @param {string} props.label - The text displayed on the button.
- * @returns {JSX.Element} The tab button component.
+ * @param {Object} props - The props for WorkInfo.
+ * @param {string} props.title - The job title or position name.
+ * @param {string} props.desc - The job description or responsibilities.
+ * @returns {JSX.Element} The work info component.
  */
-
 interface WorkInfoProps {
     title: string;
     desc: string;
