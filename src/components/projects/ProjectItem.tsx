@@ -1,6 +1,10 @@
 // Styling
 import "../../styles/projects/projects.styles.css";
 
+// Components
+import ProjectInfo from "./ProjectInfo";
+import ProjectView from "./ProjectView";
+
 /**
  * Renders a single project experience item with job information and company logo.
  * Dynamically adjusts width based on window dimensions and displays job details
@@ -20,7 +24,12 @@ interface ProjectItemProps {
 }
 
 function ProjectItem({ title, desc, link, view }: ProjectItemProps) {
-    return <div className="project_item"></div>;
+    return (
+        <div className="project_item">
+            <ProjectView filename={view} />
+            <ProjectInfo title={title} desc={desc} link={link} />
+        </div>
+    );
 }
 
 export default ProjectItem;
