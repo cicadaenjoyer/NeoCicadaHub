@@ -33,3 +33,25 @@ export const jobs = [
         logo: "rit.png",
     },
 ];
+
+// Projects Section Constants
+export const projects = [
+    {
+        title: "Software Programmer",
+        desc: "Engineered core Laravel functionalities including web page redirection, image uploads, and automated PDF workflows using PDFKit, JavaScript, and Python. Developed accessibility features for the PDF rendering engine, enabling logical document structures for visually impaired users and integrated ChartJS for dynamic chart generation in templates. Built scalable automation tools that streamlined document generation processes across the platform.",
+        link: "more_vang.png",
+        view: "path/to/project",
+    },
+    {
+        title: "Software Programmer",
+        desc: "Engineered core Laravel functionalities including web page redirection, image uploads, and automated PDF workflows using PDFKit, JavaScript, and Python. Developed accessibility features for the PDF rendering engine, enabling logical document structures for visually impaired users and integrated ChartJS for dynamic chart generation in templates. Built scalable automation tools that streamlined document generation processes across the platform.",
+        link: "more_vang.png",
+        view: "path/to/project",
+    },
+    {
+        title: "Software Programmer",
+        desc: "Engineered core Laravel functionalities including web page redirection, image uploads, and automated PDF workflows using PDFKit, JavaScript, and Python. Developed accessibility features for the PDF rendering engine, enabling logical document structures for visually impaired users and integrated ChartJS for dynamic chart generation in templates. Built scalable automation tools that streamlined document generation processes across the platform.",
+        link: "more_vang.png",
+        view: "path/to/project",
+    },
+];

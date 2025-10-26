@@ -1,0 +1,20 @@
+/* Main Projects Styles */
+.projects {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.projects > * {
+    padding-left: 3%;
+    padding-top: 2%;
+    margin-bottom: 20pt;
+}
+
+/* Project Item */
+.project_item {
+    height: auto;
+    width: 90%;
+    background-color: #fbfaff;
+    border-radius: 30px;
+}
