@@ -28,8 +28,8 @@ export const jobs = [
         logo: "id_tech.png",
     },
     {
-        title: "Supplemental Instrucion Leader",
-        desc: "Facilitated weekly study sessions for historically difficult CS courses, designing coding assessments and lecture materials in Python, Java, and C. Graded and evaluated 100+ assignments weekly for CS1 and CS2 courses, ranging from multithreaded Python railway simulations to memory-managed C social media platforms. Provided detailed technical feedback on memory usage, runtime optimization, code structure, and documentation to help students improve their programming practices",
+        title: "Supplemental Instruction Leader",
+        desc: "Facilitated weekly study sessions for historically difficult CS courses, designing coding assessments and lecture materials in Python, Java, and C. Graded and evaluated 100+ assignments weekly for CS1 and CS2 courses, ranging from multithreaded Python railway simulations to memory-managed C social media platforms. Provided detailed technical feedback on memory usage, runtime optimization, code structure, and documentation to help students improve their programming practices.",
         logo: "rit.png",
     },
 ];
