@@ -21,10 +21,7 @@ function Work() {
     const { width, height } = useWindowDimensions();
 
     return (
-        <div
-            style={{ width: `${width}px`, height: `${height * 0.9}px` }}
-            className="work"
-        >
+        <div style={{ width: `${width}px` }} className="work">
             <h1 className="banner">My Professional Experience</h1>
             {jobs.map((job) => (
                 <>
