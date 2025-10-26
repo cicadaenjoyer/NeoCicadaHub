@@ -18,8 +18,12 @@ interface ProfileButtonProps {
  * @returns {JSX.Element} The profile button component.
  */
 function ProfileButton({ label, onClick }: ProfileButtonProps) {
+    const buttonStyles =
+        label.toLocaleLowerCase().trim() === "work"
+            ? "work_button"
+            : "contact_button";
     return (
-        <button className={label.toLocaleLowerCase().trim()} onClick={onClick}>
+        <button className={buttonStyles} onClick={onClick}>
             {label}
         </button>
     );
