@@ -8,9 +8,12 @@ import equalizer_anim from "../../assets/images/home/audio-wave-50.gif";
 import equalizer_static from "../../assets/images/home/audio-wave-50-static.gif";
 import { tracks } from "../../assets/constants";
 
-const musicModules = import.meta.glob("../../assets/audio/*.mp3", {
-    eager: true,
-});
+const musicModules: Record<string, { default: string }> = import.meta.glob(
+    "../../assets/audio/*.mp3",
+    {
+        eager: true,
+    }
+);
 
 /**
  * Renders an equalizer GIF icon that plays music across the site.
