@@ -7,18 +7,14 @@ import "../../styles/work/work.styles.css";
 import useEmblaCarousel from "embla-carousel-react";
 
 // Misc.
-const picModules = import.meta.glob("../../assets/images/about/*", {
-    eager: true,
-});
+const picModules: Record<string, { default: string }> = import.meta.glob(
+    "../../assets/images/about/*",
+    { eager: true }
+);
 
 /**
  * Renders the gallery section of the About page.
- * Displays a carousel of images dynamically imported from the About images directory,
- * with navigation controls to scroll through the gallery.
- *
- * @returns {JSX.Element} The AboutGallery component.
  */
-
 function AboutGallery() {
     const [emblaRef, emblaApi] = useEmblaCarousel();
 
