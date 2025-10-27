@@ -36,6 +36,7 @@ function Projects() {
         <div
             style={{ width: `${width}px`, height: `${height}px` }}
             className="projects"
+            id="projects"
         >
             <h1 className="banner">My Recent Work</h1>
 

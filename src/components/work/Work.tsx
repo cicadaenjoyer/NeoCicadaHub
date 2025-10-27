@@ -18,10 +18,10 @@ import { jobs } from "../../assets/constants";
  * @returns {JSX.Element} The work section component.
  */
 function Work() {
-    const { width, height } = useWindowDimensions();
+    const { width } = useWindowDimensions();
 
     return (
-        <div style={{ width: `${width}px` }} className="work">
+        <div style={{ width: `${width}px` }} className="work" id="work">
             <h1 className="banner">My Professional Experience</h1>
             {jobs.map((job) => (
                 <>
