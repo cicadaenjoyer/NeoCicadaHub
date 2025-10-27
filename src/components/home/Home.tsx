@@ -21,6 +21,7 @@ function Home() {
         <div
             style={{ width: `${width}px`, height: `${height * 0.9}px` }}
             className="home"
+            id="home"
         >
             <ProfileInfo />
             <ProfileHeadshot />

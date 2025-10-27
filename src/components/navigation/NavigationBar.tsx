@@ -18,11 +18,11 @@ function NavigationBar() {
     const { width } = useWindowDimensions();
 
     return (
-        <div style={{ width: `${width}px` }} className="bar">
-            <TabButton label="Home" />
-            <TabButton label="Work" />
-            <TabButton label="Projects" />
-            <TabButton label="About" />
+        <div style={{ width: `${width}px` }} className="bar" id="nav">
+            <TabButton label="Home" location="/#nav" />
+            <TabButton label="Work" location="/#work" />
+            <TabButton label="Projects" location="/#projects" />
+            <TabButton label="About" location="/#about" />
             <MVPlayer />
         </div>
     );
