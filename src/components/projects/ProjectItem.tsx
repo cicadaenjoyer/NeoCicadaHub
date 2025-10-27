@@ -6,15 +6,16 @@ import ProjectInfo from "./ProjectInfo";
 import ProjectView from "./ProjectView";
 
 /**
- * Renders a single project experience item with job information and company logo.
- * Dynamically adjusts width based on window dimensions and displays job details
- * alongside the company's visual branding.
+ * Renders a single project item for the Projects page.
+ * Combines the project visual representation and information,
+ * displaying the project title, description, optional link, and associated media.
  *
- * @param {Object} props - The props for projectItem.
- * @param {string} props.title - The job title or position name.
- * @param {string} props.desc - The job description or responsibilities.
- * @param {string} props.logo - The filename of the company logo image.
- * @returns {JSX.Element} The project item component.
+ * @param {Object} props - The props for ProjectItem.
+ * @param {string} props.title - The project title.
+ * @param {string} props.desc - The project description.
+ * @param {string} props.link - Optional URL for more information.
+ * @param {string} props.view - The filename of the project media or visual.
+ * @returns {JSX.Element} The ProjectItem component.
  */
 interface ProjectItemProps {
     title: string;

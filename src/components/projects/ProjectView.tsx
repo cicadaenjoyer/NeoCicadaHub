@@ -10,12 +10,12 @@ const logoModules = import.meta.glob<{ default: string }>(
 );
 
 /**
- * Renders the visual/logo section for a work experience item.
- * Dynamically imports and displays company logos from the work images directory.
+ * Renders the visual/media section of a project item.
+ * Dynamically imports and displays a project image based on the provided filename.
  *
  * @param {Object} props - The props for ProjectView.
- * @param {string} props.filename - The filename of the company logo (e.g., "rit.png").
- * @returns {JSX.Element} The work view component.
+ * @param {string} props.filename - The filename of the project image (e.g., "project.png").
+ * @returns {JSX.Element} The ProjectView component.
  */
 interface ProjectViewProps {
     filename: string;
