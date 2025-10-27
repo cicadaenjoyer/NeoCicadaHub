@@ -28,7 +28,7 @@ function ProfileInfo() {
 
     // onClick listeners for work and contact buttons
     const handleWorkClick = () => {
-        console.log("NOTE: Should redirect user to 'Work' section");
+        window.location.replace("/#work");
     };
     const handleContactClick = () => {
         setIsContactOpen(true);
