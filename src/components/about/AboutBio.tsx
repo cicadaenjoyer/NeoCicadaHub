@@ -2,10 +2,10 @@
 import "../../styles/about/about.styles.css";
 
 /**
- * Renders the information section for a work experience item.
- * Displays the job title and description in a formatted layout.
+ * Renders the biography section of the About page.
+ * Displays personal background, career goals, and technical experience.
  *
- * @returns {JSX.Element} The work info component.
+ * @returns {JSX.Element} The AboutBio component.
  */
 
 function AboutBio() {

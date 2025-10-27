@@ -8,10 +8,11 @@ import AboutContainer from "./AboutContainer";
 import useWindowDimensions from "../../hooks/WindowDimensions";
 
 /**
- * Renders the main navigation bar with tab buttons for different sections.
- * The navigation bar's width dynamically adjusts to the current window dimensions.
+ * Renders the About page section of the website.
+ * The component dynamically adjusts its size based on the current window dimensions
+ * and contains the main content managed by the AboutContainer component.
  *
- * @returns {JSX.Element} The navigation bar component.
+ * @returns {JSX.Element} The About page component.
  */
 function About() {
     const { width, height } = useWindowDimensions();

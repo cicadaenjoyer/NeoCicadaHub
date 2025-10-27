@@ -12,10 +12,11 @@ const picModules = import.meta.glob("../../assets/images/about/*", {
 });
 
 /**
- * Renders the visual/logo section for a work experience item.
- * Dynamically imports and displays company logos from the work images directory.
+ * Renders the gallery section of the About page.
+ * Displays a carousel of images dynamically imported from the About images directory,
+ * with navigation controls to scroll through the gallery.
  *
- * @returns {JSX.Element} The work view component.
+ * @returns {JSX.Element} The AboutGallery component.
  */
 
 function AboutGallery() {

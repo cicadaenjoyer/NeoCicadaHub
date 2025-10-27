@@ -9,11 +9,11 @@ import AboutGallery from "./AboutGallery";
 import useWindowDimensions from "../../hooks/WindowDimensions";
 
 /**
- * Renders a single work experience item with job information and company logo.
- * Dynamically adjusts width based on window dimensions and displays job details
- * alongside the company's visual branding.
+ * Renders the main container for the About page.
+ * Combines the biography and image gallery, adjusting its width dynamically
+ * based on the current window dimensions for responsive design.
  *
- * @returns {JSX.Element} The work item component.
+ * @returns {JSX.Element} The AboutContainer component.
  */
 
 function AboutContainer() {
