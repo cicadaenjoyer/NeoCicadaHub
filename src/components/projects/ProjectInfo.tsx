@@ -2,13 +2,15 @@
 import "../../styles/projects/projects.styles.css";
 
 /**
- * Renders the information section for a work experience item.
- * Displays the job title and description in a formatted layout.
+ * Renders a project information section.
+ * Displays the project title, description, and an optional external link
+ * in a styled layout.
  *
  * @param {Object} props - The props for ProjectInfo.
- * @param {string} props.title - The job title or position name.
- * @param {string} props.desc - The job description or responsibilities.
- * @returns {JSX.Element} The work info component.
+ * @param {string} props.title - The project title.
+ * @param {string} props.desc - The project description.
+ * @param {string} props.link - Optional URL for more information.
+ * @returns {JSX.Element} The ProjectInfo component.
  */
 interface ProjectInfoProps {
     title: string;

@@ -9,10 +9,11 @@ import ProfileHeadshot from "./ProfileHeadshot";
 import useWindowDimensions from "../../hooks/WindowDimensions";
 
 /**
- * Renders the main navigation bar with tab buttons for different sections.
- * The navigation bar's width dynamically adjusts to the current window dimensions.
+ * Renders the Home page section of the website.
+ * Combines the profile information and headshot components,
+ * adjusting its size dynamically based on the current window dimensions.
  *
- * @returns {JSX.Element} The navigation bar component.
+ * @returns {JSX.Element} The Home page component.
  */
 function Home() {
     const { width, height } = useWindowDimensions();
