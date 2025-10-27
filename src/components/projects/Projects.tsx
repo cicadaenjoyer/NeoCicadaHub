@@ -40,7 +40,7 @@ function Projects() {
         >
             <h1 className="banner">My Recent Work</h1>
 
-            <div className="project_item">
+            <div className="project_embla">
                 <div className="project_embla_viewport" ref={emblaRef}>
                     <div className="project_embla_container">
                         {projects.map((project, index) => (

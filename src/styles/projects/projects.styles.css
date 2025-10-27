@@ -9,7 +9,7 @@
 .projects > * {
     padding-left: 3%;
     padding-top: 2%;
-    margin-bottom: 20pt;
+    padding-bottom: 1%;
 }
 
 /* Project Information */
@@ -41,24 +41,25 @@
 /* Project Logo*/
 .project_view {
     width: 50%;
+    height: 750px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .project_view_img {
-    max-width: 250px;
+    max-width: 90%;
     max-height: 100%;
     object-fit: cover;
 }
 
 /* Carousel Styles */
-.project_item {
+.project_embla {
     height: 80%;
     width: 90%;
     background-color: #fbfaff;
     border-radius: 30px;
-    margin: 0 auto;
+    margin: auto;
     overflow: hidden;
 }
 .project_embla_viewport {
@@ -72,6 +73,13 @@
 .project_embla_slide {
     flex: 0 0 100%;
     min-width: 0;
+}
+.project_item {
+    width: 90%;
+    margin: auto;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
 }
 .project__prev {
     font-family: "Work Sans";
