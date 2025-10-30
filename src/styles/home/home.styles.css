@@ -7,11 +7,11 @@
 /* Profile Info Section (Left Side) */
 .profile_info {
     background-color: white;
-    width: 45%;
+    width: 50%;
     display: flex;
     flex-direction: column;
-    padding: 100px;
     gap: 10px;
+    padding-left: 50px;
     justify-content: center;
 }
 .work_button {
@@ -20,7 +20,7 @@
     color: #403930;
     border-width: 3px;
     font-family: "Work Sans";
-    font-size: 20pt;
+    font-size: clamp(5pt, 2.8vw, 20pt);
 }
 .work_button:hover {
     border-color: #594f34;
@@ -32,20 +32,20 @@
     cursor: pointer;
     color: #594f34;
     font-family: "Work Sans";
-    font-size: 20pt;
+    font-size: clamp(5pt, 2.8vw, 20pt);
 }
 .contact_button:hover {
     border-color: #594f34;
 }
 h1 {
     font-family: "Eczar";
-    font-size: 50pt;
+    font-size: clamp(20pt, calc(2vw + 2vh), 50pt);
     color: #403930;
     margin: 0;
 }
 .typewriter-text {
     font-family: "Eczar";
-    font-size: 40pt;
+    font-size: clamp(10pt, calc(2vw + 2vh), 40pt);
     line-height: 1.1;
     color: #403930;
     margin: 0;
@@ -62,7 +62,7 @@ h1 {
 .profile_headshot img {
     width: 65%;
     height: auto;
-    object-fit: contain;
+    object-fit: fill;
 }
 
 /* Contact Dialog Modal */
