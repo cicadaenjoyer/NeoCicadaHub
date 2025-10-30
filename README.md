@@ -1,73 +1,91 @@
-# React + TypeScript + Vite
+# NeoCicadaHub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern refactor of my personal website built with React, TypeScript, and Vite — designed for speed, scalability, and style.
 
-Currently, two official plugins are available:
+![GitHub repo size](https://img.shields.io/github/repo-size/cicadaenjoyer/NeoCicadaHub)
+![GitHub last commit](https://img.shields.io/github/last-commit/cicadaenjoyer/NeoCicadaHub)
+![GitHub issues](https://img.shields.io/github/issues/cicadaenjoyer/NeoCicadaHub)
+![GitHub license](https://img.shields.io/github/license/cicadaenjoyer/NeoCicadaHub)
+![Built with React](https://img.shields.io/badge/Built%20with-React-blue?logo=react)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Project Overview
 
-## React Compiler
+NeoCicadaHub serves as a portfolio site showcasing my prior work experience and projects.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+It's built for fast loading, easy deployment, and creative flexibility.
 
-## Expanding the ESLint configuration
+## ⚙️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Tool       | Purpose                      |
+| ---------- | ---------------------------- |
+| React      | Component-based UI framework |
+| TypeScript | Type-safe, maintainable code |
+| Vite       | Lightning-fast build system  |
+| ESLint     | Code quality enforcement     |
+| Figma      | UI/UX prototyping and design |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 📦 Prerequisites
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Make sure you have:
+
+-   Node.js (v14 or higher)
+-   npm or Yarn
+
+### 🧭 Installation
+
+```bash
+# Clone the repo
+git clone https://github.com/cicadaenjoyer/NeoCicadaHub.git
+cd NeoCicadaHub
+
+# Install dependencies
+npm install  # or yarn
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### ▶️ Running Locally
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+### 🏗️ Building for Production
+
+```bash
+npm run build
+```
+
+### 👀 Preview Production Build
+
+```bash
+npm run preview
+```
+
+## 🧠 Project Structure
+
+```
+NeoCicadaHub/
+├── public/                # Static assets (favicon, index.html, etc.)
+├── src/                   # Core React + TypeScript code
+│   ├── components/        # Reusable UI components
+│   ├── styles/            # CSS/SCSS style files
+│   ├── assets/            # Images, icons, logos
+│   ├── pages/             # Page-level components
+│   └── main.tsx           # App entry point
+├── vite.config.ts         # Vite configuration
+├── eslint.config.js       # ESLint setup
+├── tsconfig.json          # TypeScript configuration
+├── package.json
+└── TODO.md                # Task tracking and future ideas
+```
+
+## 🌐 Demo
+
+**Live Site:** [www.cicadahub.dev](www.cicadahub.dev)
+
+## 📄 License
+
+This project is open-source under the MIT License.
+
+---
