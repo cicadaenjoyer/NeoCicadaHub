@@ -14,7 +14,7 @@
 /* Banner */
 .banner {
     font-family: "Eczar";
-    font-size: 35pt;
+    font-size: clamp(14pt, 3vw, 35pt);
     color: #403930;
     align-self: flex-start;
 }
@@ -38,13 +38,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 10pt;
 }
 .work_info_title {
-    font-size: 20pt;
+    font-size: clamp(10pt, 3vw, 20pt);
     font-weight: 700;
 }
 .work_info_desc {
-    font-size: 12pt;
+    font-size: clamp(4px, 2.8vw, 12pt);
     font-weight: 400;
 }
 
@@ -57,7 +58,7 @@
 }
 
 .work_view_img {
-    max-width: 250px;
-    max-height: 100%;
-    object-fit: cover;
+    max-width: 160px;
+    max-height: 160px;
+    object-fit: contain;
 }
