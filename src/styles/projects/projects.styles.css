@@ -25,17 +25,17 @@
 }
 
 .project_info_title {
-    font-size: 26pt;
+    font-size: clamp(11pt, 2vw, 26pt);
     font-weight: 700;
 }
 
 .project_info_desc {
-    font-size: 18pt;
+    font-size: clamp(7pt, 1.5vw, 18pt);
     font-weight: 400;
 }
 
 .project_info_link {
-    font-size: 18pt;
+    font-size: clamp(8pt, 1.5vw, 18pt);
 }
 
 /* Project Logo*/
@@ -48,8 +48,8 @@
 }
 
 .project_view_img {
-    max-width: 90%;
-    max-height: 100%;
+    max-width: 70%;
+    max-height: 70%;
     object-fit: cover;
 }
 
@@ -85,9 +85,11 @@
     font-family: "Work Sans";
     background-color: #f8cf9e;
     color: #594f34;
+    font-size: clamp(8pt, 2vw, 12pt);
 }
 .project__next {
     font-family: "Work Sans";
     background-color: #f8cf9e;
     color: #594f34;
+    font-size: clamp(8pt, 2vw, 12pt);
 }

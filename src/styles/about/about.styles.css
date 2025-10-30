@@ -37,12 +37,12 @@
 }
 
 .about_bio_title {
-    font-size: 35pt;
+    font-size: clamp(14pt, 3vw, 35pt);
     font-weight: 700;
 }
 
 .about_bio_desc {
-    font-size: 18pt;
+    font-size: clamp(5pt, 1vw, 20pt);
     font-weight: 400;
 }
 
@@ -91,10 +91,12 @@
     font-family: "Work Sans";
     background-color: #f8cf9e;
     color: #594f34;
+    font-size: clamp(8pt, 2vw, 12pt);
 }
 
 .about__next {
     font-family: "Work Sans";
     background-color: #f8cf9e;
     color: #594f34;
+    font-size: clamp(8pt, 2vw, 12pt);
 }

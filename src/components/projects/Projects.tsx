@@ -55,6 +55,8 @@ function Projects() {
                         ))}
                     </div>
                 </div>
+            </div>
+            <div style={{ flexDirection: "row" }}>
                 <button className="project__prev" onClick={scrollPrev}>
                     Prev
                 </button>
