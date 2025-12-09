@@ -13,6 +13,12 @@ import {
 // Styling
 import "../../styles/about/about.styles.css";
 
+/**
+ * Renders the biography section of the About page.
+ * Displays personal background, career goals, and technical experience.
+ *
+ * @returns {JSX.Element} The AboutBio component.
+ */
 function AboutBio() {
     const techStack = [
         { icon: SiTypescript },
