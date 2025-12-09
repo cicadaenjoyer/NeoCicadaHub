@@ -1,14 +1,31 @@
+import {
+    SiPython,
+    SiTypescript,
+    SiC,
+    SiCplusplus,
+    SiRuby,
+    SiReact,
+    SiGit,
+    SiDocker,
+    SiMysql,
+} from "react-icons/si";
+
 // Styling
 import "../../styles/about/about.styles.css";
 
-/**
- * Renders the biography section of the About page.
- * Displays personal background, career goals, and technical experience.
- *
- * @returns {JSX.Element} The AboutBio component.
- */
-
 function AboutBio() {
+    const techStack = [
+        { icon: SiTypescript },
+        { icon: SiPython },
+        { icon: SiC },
+        { icon: SiCplusplus },
+        { icon: SiRuby },
+        { icon: SiReact },
+        { icon: SiGit },
+        { icon: SiDocker },
+        { icon: SiMysql },
+    ];
+
     return (
         <div className="about_bio">
             <h1 className="about_bio_title">A little about me</h1>
@@ -36,6 +53,13 @@ function AboutBio() {
                 Aside from programming, I also like to garden, read sci-fi
                 books, and listen to classical and 90's rock music!
             </h2>
+
+            <div className="about_techstack_icons">
+                {techStack.map((tech, idx) => {
+                    const Icon = tech.icon;
+                    return <Icon key={idx} />;
+                })}
+            </div>
         </div>
     );
 }
