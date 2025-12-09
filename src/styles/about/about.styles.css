@@ -100,3 +100,12 @@
     color: #594f34;
     font-size: clamp(8pt, 2vw, 12pt);
 }
+
+/* Tech Stack Section */
+.about_techstack_icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    font-size: clamp(14pt, 3vw, 35pt);
+    color: "default";
+}

@@ -1,3 +1,15 @@
+import {
+    SiPython,
+    SiTypescript,
+    SiC,
+    SiCplusplus,
+    SiRuby,
+    SiReact,
+    SiGit,
+    SiDocker,
+    SiMysql,
+} from "react-icons/si";
+
 // Styling
 import "../../styles/about/about.styles.css";
 
@@ -7,8 +19,19 @@ import "../../styles/about/about.styles.css";
  *
  * @returns {JSX.Element} The AboutBio component.
  */
-
 function AboutBio() {
+    const techStack = [
+        { icon: SiTypescript },
+        { icon: SiPython },
+        { icon: SiC },
+        { icon: SiCplusplus },
+        { icon: SiRuby },
+        { icon: SiReact },
+        { icon: SiGit },
+        { icon: SiDocker },
+        { icon: SiMysql },
+    ];
+
     return (
         <div className="about_bio">
             <h1 className="about_bio_title">A little about me</h1>
@@ -27,17 +50,22 @@ function AboutBio() {
                 Science—I had to figure out a lot on my own. That experience
                 showed me how important it is to have support and guidance when
                 you're just starting out. I want to make sure the next
-                generation of students has access to the tools, knowledge, and
-                encouragement they need to thrive as developers, especially
-                those from underrepresented or underserved communities who might
-                face similar barriers that I did.
+                generation of students has access to the tools and knowledge
+                they need to thrive as developers, especially those from
+                underrepresented or underserved communities who might face
+                similar barriers that I did.
             </h2>
             <h2 className="about_bio_desc">
-                Some of the languages and tech I've worked with include Python,
-                Java/TypeScript, C, React, React Native, Gitlab, and Docker.
-                Outside of programming, I also love gardening, reading sci-fi
-                books, and listening to 90's rock!
+                Aside from programming, I also like to garden, read sci-fi
+                books, and listen to classical and 90's rock music!
             </h2>
+
+            <div className="about_techstack_icons">
+                {techStack.map((tech, idx) => {
+                    const Icon = tech.icon;
+                    return <Icon key={idx} />;
+                })}
+            </div>
         </div>
     );
 }
