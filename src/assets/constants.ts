@@ -36,10 +36,10 @@ export const jobs = [
 // Projects Section Constants
 export const projects = [
     {
-        title: "WaniKaniPocket",
+        title: "Tabi",
         desc: "A cross-platform mobile application built with React Native that extends WaniKani's Japanese language learning experience to iOS and Android devices. The app provides access to Japanese subject study materials with features including progress tracking, review quizzes, interactive lessons, and more. Developed using TypeScript with WaniKani API integration to create a smooth, native-feeling experience across both platforms.",
-        link: "https://github.com/cicadaenjoyer/WaniKaniPocket",
-        view: "wanikanipocket.png",
+        link: "https://github.com/cicadaenjoyer/Tabi",
+        view: "tabi.png",
     },
     {
         title: "C Database System",
