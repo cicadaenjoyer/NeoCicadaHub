@@ -1,6 +1,6 @@
 # NeoCicadaHub
 
-A modern refactor of my personal website built with React, TypeScript, and Vite — designed for speed, scalability, and style.
+A modern refactor of my personal website built with React and TypeScript.
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/cicadaenjoyer/NeoCicadaHub)
 ![GitHub last commit](https://img.shields.io/github/last-commit/cicadaenjoyer/NeoCicadaHub)
@@ -8,4 +8,4 @@ A modern refactor of my personal website built with React, TypeScript, and Vite 
 ![GitHub license](https://img.shields.io/github/license/cicadaenjoyer/NeoCicadaHub)
 ![Built with React](https://img.shields.io/badge/Built%20with-React-blue?logo=react)
 
-[www.cicadahub.dev](www.cicadahub.dev)
+[www.cicadahub.dev](https://www.cicadahub.dev)
