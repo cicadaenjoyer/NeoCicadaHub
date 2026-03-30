@@ -1,5 +1,5 @@
 // Styling
-import "../../styles/work/work.styles.css";
+import "../../styles/projects/projects.styles.css";
 
 // Misc.
 const logoModules = import.meta.glob<{ default: string }>(
@@ -21,13 +21,13 @@ interface ProjectViewProps {
     filename: string;
 }
 
-function ProjectView({ filename }: ProjectViewProps) {
+function ProjectView({ filename }: Readonly<ProjectViewProps>) {
     const fullPath = `../../assets/images/projects/${filename}`;
     const logo = logoModules[fullPath]?.default;
 
     return (
         <div className="project_view">
-            <img className="project_view_img" src={logo} />
+            <img className="project_view_img" src={logo} alt={filename} />
         </div>
     );
 }

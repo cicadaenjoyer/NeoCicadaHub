@@ -7,9 +7,6 @@ import "../../styles/projects/projects.styles.css";
 import useEmblaCarousel from "embla-carousel-react";
 import ProjectItem from "./ProjectItem";
 
-// Hooks
-import useWindowDimensions from "../../hooks/WindowDimensions";
-
 // Misc.
 import { projects } from "../../assets/constants";
 
@@ -30,21 +27,15 @@ function Projects() {
         if (emblaApi) emblaApi.scrollNext();
     }, [emblaApi]);
 
-    const { width, height } = useWindowDimensions();
-
     return (
-        <div
-            style={{ width: `${width}px`, height: `${height}px` }}
-            className="projects"
-            id="projects"
-        >
+        <div className="projects" id="projects">
             <h1 className="banner">My Recent Work</h1>
 
             <div className="project_embla">
                 <div className="project_embla_viewport" ref={emblaRef}>
                     <div className="project_embla_container">
-                        {projects.map((project, index) => (
-                            <div className="project_embla_slide" key={index}>
+                        {projects.map((project) => (
+                            <div className="project_embla_slide" key={project.title}>
                                 <ProjectItem
                                     title={project.title}
                                     desc={project.desc}
@@ -56,7 +47,7 @@ function Projects() {
                     </div>
                 </div>
             </div>
-            <div style={{ flexDirection: "row" }}>
+            <div className="project_embla_controls">
                 <button className="project__prev" onClick={scrollPrev}>
                     Prev
                 </button>

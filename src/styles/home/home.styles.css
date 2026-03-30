@@ -2,6 +2,10 @@
 .home {
     background-color: white;
     display: flex;
+    width: 100%;
+    min-height: 90vh;
+    padding: clamp(1rem, 3vw, 2.5rem);
+    box-sizing: border-box;
 }
 
 /* Profile Info Section (Left Side) */
@@ -10,16 +14,22 @@
     width: 50%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding-left: 50px;
+    gap: 0.75rem;
+    padding-left: clamp(0.5rem, 4vw, 3rem);
     justify-content: center;
+}
+
+.buttons {
+    display: flex;
+    gap: clamp(0.75rem, 2.5vw, 1.9rem);
+    flex-wrap: wrap;
 }
 .work_button {
     background-color: blanchedalmond;
     cursor: pointer;
     color: #403930;
     border-width: 3px;
-    font-family: "Work Sans";
+    font-family: "Work Sans", sans-serif;
     font-size: clamp(5pt, 2.8vw, 20pt);
 }
 .work_button:hover {
@@ -31,20 +41,20 @@
     background-color: white;
     cursor: pointer;
     color: #594f34;
-    font-family: "Work Sans";
+    font-family: "Work Sans", sans-serif;
     font-size: clamp(5pt, 2.8vw, 20pt);
 }
 .contact_button:hover {
     border-color: #594f34;
 }
 h1 {
-    font-family: "Eczar";
+    font-family: "Eczar", serif;
     font-size: clamp(20pt, calc(2vw + 2vh), 50pt);
     color: #403930;
     margin: 0;
 }
 .typewriter-text {
-    font-family: "Eczar";
+    font-family: "Eczar", serif;
     font-size: clamp(10pt, calc(2vw + 2vh), 40pt);
     line-height: 1.1;
     color: #403930;
@@ -60,9 +70,9 @@ h1 {
     align-items: center;
 }
 .profile_headshot img {
-    width: 65%;
+    width: min(65%, 460px);
     height: auto;
-    object-fit: fill;
+    object-fit: contain;
 }
 
 /* Contact Dialog Modal */
@@ -71,14 +81,14 @@ h1 {
     border-radius: 12px;
     padding: 40px;
     max-width: 400px;
-    width: 100%;
+    width: calc(100% - 2rem);
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
         0 10px 10px -5px rgba(0, 0, 0, 0.04);
     position: relative;
     z-index: 10001;
 }
 .dialog-title {
-    font-family: "Eczar";
+    font-family: "Eczar", serif;
     font-size: 32pt;
     color: #403930;
     margin: 0 0 30px 0;
@@ -99,7 +109,7 @@ h1 {
     color: #403930;
     text-decoration: none;
     border-radius: 8px;
-    font-family: "Work Sans";
+    font-family: "Work Sans", sans-serif;
     font-size: 18pt;
     transition: all 0.2s;
     border: 3px solid blanchedalmond;
@@ -118,7 +128,7 @@ h1 {
     background-color: white;
     border: 3px solid blanchedalmond;
     color: #594f34;
-    font-family: "Work Sans";
+    font-family: "Work Sans", sans-serif;
     font-size: 16pt;
     border-radius: 8px;
     cursor: pointer;
@@ -126,4 +136,43 @@ h1 {
 }
 .close-button:hover {
     border-color: #594f34;
+}
+
+@media (max-width: 1024px) {
+    .home {
+        min-height: auto;
+    }
+
+    .profile_info {
+        width: 55%;
+    }
+
+    .profile_headshot {
+        width: 45%;
+    }
+}
+
+@media (max-width: 768px) {
+    .home {
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    .profile_info,
+    .profile_headshot {
+        width: 100%;
+        padding-left: 0;
+        text-align: center;
+        align-items: center;
+    }
+
+    .buttons {
+        justify-content: center;
+    }
+
+    .profile_headshot img {
+        width: min(70vw, 360px);
+    }
 }

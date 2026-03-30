@@ -4,10 +4,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 0 clamp(1rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
+    box-sizing: border-box;
 }
 
 .projects > * {
-    padding-left: 3%;
     padding-top: 2%;
     padding-bottom: 1%;
 }
@@ -16,12 +19,13 @@
 .project_info {
     height: 100%;
     width: 50%;
-    font-family: "Work Sans";
+    font-family: "Work Sans", sans-serif;
     color: #403930;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 5%;
 }
 
 .project_info_title {
@@ -41,29 +45,31 @@
 /* Project Logo*/
 .project_view {
     width: 50%;
-    height: 950px;
+    min-height: clamp(220px, 38vw, 420px);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .project_view_img {
-    max-width: 70%;
-    max-height: 70%;
-    object-fit: cover;
+    width: min(90%, 420px);
+    max-height: min(65vw, 580px);
+    object-fit: contain;
 }
 
 /* Carousel Styles */
 .project_embla {
-    height: 80%;
-    width: 90%;
+    width: min(1600px, 100%);
+    min-height: clamp(380px, 65vh, 720px);
     background-color: #fbfaff;
     border-radius: 30px;
     margin: auto;
     overflow: hidden;
+    padding: clamp(0.75rem, 2vw, 1.25rem);
+    box-sizing: border-box;
 }
 .project_embla_viewport {
-    height: 90%;
+    height: 100%;
 }
 .project_embla_container {
     height: 100%;
@@ -75,21 +81,48 @@
     min-width: 0;
 }
 .project_item {
-    width: 90%;
+    width: 100%;
+    min-height: clamp(340px, 58vh, 620px);
     margin: auto;
     align-items: center;
     display: flex;
     flex-direction: row;
+    gap: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.project_embla_controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
 }
 .project__prev {
-    font-family: "Work Sans";
+    font-family: "Work Sans", sans-serif;
     background-color: #f8cf9e;
     color: #594f34;
     font-size: clamp(8pt, 2vw, 12pt);
 }
 .project__next {
-    font-family: "Work Sans";
+    font-family: "Work Sans", sans-serif;
     background-color: #f8cf9e;
     color: #594f34;
     font-size: clamp(8pt, 2vw, 12pt);
+}
+
+@media (max-width: 900px) {
+    .project_item {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .project_view,
+    .project_info {
+        width: 100%;
+    }
+
+    .project_info {
+        padding: 0 0.5rem;
+        box-sizing: border-box;
+    }
 }

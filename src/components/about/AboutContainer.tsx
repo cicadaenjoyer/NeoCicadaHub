@@ -5,9 +5,6 @@ import "../../styles/about/about.styles.css";
 import AboutBio from "./AboutBio";
 import AboutGallery from "./AboutGallery";
 
-// Hooks
-import useWindowDimensions from "../../hooks/WindowDimensions";
-
 /**
  * Renders the main container for the About page.
  * Combines the biography and image gallery, adjusting its width dynamically
@@ -17,10 +14,8 @@ import useWindowDimensions from "../../hooks/WindowDimensions";
  */
 
 function AboutContainer() {
-    const { width } = useWindowDimensions();
-
     return (
-        <div style={{ width: `${width * 0.9}px` }} className="about_container">
+        <div className="about_container">
             <AboutBio />
             <AboutGallery />
         </div>
