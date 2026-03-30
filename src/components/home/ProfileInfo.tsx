@@ -28,7 +28,7 @@ function ProfileInfo() {
 
     // onClick listeners for work and contact buttons
     const handleWorkClick = () => {
-        window.location.replace("/#work");
+        globalThis.location.replace("/#work");
     };
     const handleContactClick = () => {
         setIsContactOpen(true);
@@ -49,10 +49,7 @@ function ProfileInfo() {
                         wrapperClassName: "typewriter-text",
                     }}
                 />
-                <div
-                    style={{ display: "flex", gap: "30px" }}
-                    className="buttons"
-                >
+                <div className="buttons">
                     <ProfileButton label="Work" onClick={handleWorkClick} />
                     <ProfileButton
                         label="Contact"

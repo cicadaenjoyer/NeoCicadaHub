@@ -5,9 +5,6 @@ import "../../styles/work/work.styles.css";
 import WorkInfo from "./WorkInfo";
 import WorkView from "./WorkView";
 
-// Hooks
-import useWindowDimensions from "../../hooks/WindowDimensions";
-
 /**
  * Renders a single work experience item with job information and company logo.
  * Dynamically adjusts width based on window dimensions and displays job details
@@ -25,11 +22,9 @@ interface WorkItemProps {
     logo: string;
 }
 
-function WorkItem({ title, desc, logo }: WorkItemProps) {
-    const { width } = useWindowDimensions();
-
+function WorkItem({ title, desc, logo }: Readonly<WorkItemProps>) {
     return (
-        <div style={{ width: `${width * 0.9}px` }} className="work_item">
+        <div className="work_item">
             <WorkInfo title={title} desc={desc} />
             <WorkView filename={logo} />
         </div>

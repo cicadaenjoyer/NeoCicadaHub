@@ -27,7 +27,7 @@ function WorkView({ filename }: WorkViewProps) {
 
     return (
         <div className="work_view">
-            <img className="work_view_img" src={logo} />
+            <img className="work_view_img" src={logo} alt={filename} />
         </div>
     );
 }

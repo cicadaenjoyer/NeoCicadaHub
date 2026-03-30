@@ -4,9 +4,6 @@ import "../../styles/about/about.styles.css";
 // Components
 import AboutContainer from "./AboutContainer";
 
-// Hooks
-import useWindowDimensions from "../../hooks/WindowDimensions";
-
 /**
  * Renders the About page section of the website.
  * The component dynamically adjusts its size based on the current window dimensions
@@ -15,14 +12,8 @@ import useWindowDimensions from "../../hooks/WindowDimensions";
  * @returns {JSX.Element} The About page component.
  */
 function About() {
-    const { width, height } = useWindowDimensions();
-
     return (
-        <div
-            style={{ width: `${width}px`, height: `${height}px` }}
-            className="about"
-            id="about"
-        >
+        <div className="about" id="about">
             <AboutContainer />
         </div>
     );

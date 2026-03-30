@@ -11,7 +11,7 @@ import headshot from "../../assets/images/home/headshot.gif";
 function ProfileHeadshot() {
     return (
         <div className="profile_headshot">
-            <img src={headshot}></img>
+            <img src={headshot} alt="Profile headshot" />
         </div>
     );
 }

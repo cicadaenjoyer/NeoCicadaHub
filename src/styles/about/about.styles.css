@@ -5,17 +5,21 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 0 clamp(1rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
+    box-sizing: border-box;
 }
 
 .about > * {
-    padding-left: 3%;
     padding-top: 2%;
     padding-bottom: 1%;
 }
 
 /* About Container */
 .about_container {
-    height: 85%;
+    width: min(1500px, 100%);
+    min-height: clamp(460px, 78vh, 820px);
     background-color: white;
     border-radius: 30px;
     margin-bottom: 20px;
@@ -23,12 +27,15 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    gap: clamp(2rem, 2vw, 3rem);
+    padding: clamp(0.75rem, 2.5vw, 4rem);
+    box-sizing: border-box;
 }
 
 /* About Bio Section */
 .about_bio {
     width: 50%;
-    font-family: "Work Sans";
+    font-family: "Work Sans", sans-serif;
     color: #403930;
     display: flex;
     flex-direction: column;
@@ -42,13 +49,13 @@
 }
 
 .about_bio_desc {
-    font-size: clamp(5pt, 1vw, 20pt);
+    font-size: clamp(8pt, 1vw, 14pt);
     font-weight: 400;
 }
 
 /* Carousel Styles */
 .about_embla {
-    height: 90%;
+    min-height: clamp(260px, 50vh, 560px);
     width: 45%;
     background-color: white;
     border-radius: 30px;
@@ -62,7 +69,7 @@
 
 .about_embla_viewport {
     height: 100%;
-    width: 80%;
+    width: 100%;
     overflow: hidden;
     margin-bottom: 10pt;
 }
@@ -83,19 +90,27 @@
 }
 
 .about_gallery_img {
-    max-width: 100%;
-    max-height: 80%;
+    width: 100%;
+    max-height: min(58vh, 500px);
+    object-fit: contain;
+}
+
+.about_embla_controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
 }
 
 .about__prev {
-    font-family: "Work Sans";
+    font-family: "Work Sans", sans-serif;
     background-color: #f8cf9e;
     color: #594f34;
     font-size: clamp(8pt, 2vw, 12pt);
 }
 
 .about__next {
-    font-family: "Work Sans";
+    font-family: "Work Sans", sans-serif;
     background-color: #f8cf9e;
     color: #594f34;
     font-size: clamp(8pt, 2vw, 12pt);
@@ -105,7 +120,24 @@
 .about_techstack_icons {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
-    font-size: clamp(14pt, 3vw, 35pt);
-    color: "default";
+    justify-content: center;
+    gap: clamp(0.8rem, 2.5vw, 2rem);
+    font-size: clamp(14pt, 3vw, 28pt);
+    padding-top: 5%;
+}
+
+@media (max-width: 900px) {
+    .about_container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .about_bio,
+    .about_embla {
+        width: 100%;
+    }
+
+    .about_bio {
+        text-align: center;
+    }
 }

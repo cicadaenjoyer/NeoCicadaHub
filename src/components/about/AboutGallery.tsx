@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 
 // Styling
-import "../../styles/work/work.styles.css";
+import "../../styles/about/about.styles.css";
 
 // Components
 import useEmblaCarousel from "embla-carousel-react";
@@ -32,13 +32,17 @@ function AboutGallery() {
             <div className="about_embla_viewport" ref={emblaRef}>
                 <div className="about_embla_container">
                     {gallery.map((image, index) => (
-                        <div className="project_embla_slide" key={index}>
-                            <img className="about_gallery_img" src={image} />
+                        <div className="about_embla_slide" key={image}>
+                            <img
+                                className="about_gallery_img"
+                                src={image}
+                                alt={`About gallery ${index + 1}`}
+                            />
                         </div>
                     ))}
                 </div>
             </div>
-            <div style={{ flexDirection: "row" }}>
+            <div className="about_embla_controls">
                 <button className="about__prev" onClick={scrollPrev}>
                     Prev
                 </button>

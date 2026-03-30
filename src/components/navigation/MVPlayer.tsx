@@ -112,12 +112,14 @@ function MVPlayer() {
     };
 
     return (
-        <img
-            className="mv_player"
-            src={icon}
+        <button
+            type="button"
+            className="mv_player_button"
             onClick={playButton}
-            style={{ cursor: "pointer" }}
-        />
+            aria-label="Toggle music player"
+        >
+            <img className="mv_player" src={icon} alt="Music player toggle" />
+        </button>
     );
 }
 

@@ -4,9 +4,6 @@ import "../../styles/work/work.styles.css";
 // Components
 import WorkItem from "./WorkItem";
 
-// Hooks
-import useWindowDimensions from "../../hooks/WindowDimensions";
-
 // Misc.
 import { jobs } from "../../assets/constants";
 
@@ -18,19 +15,16 @@ import { jobs } from "../../assets/constants";
  * @returns {JSX.Element} The work section component.
  */
 function Work() {
-    const { width } = useWindowDimensions();
-
     return (
-        <div style={{ width: `${width}px` }} className="work" id="work">
+        <div className="work" id="work">
             <h1 className="banner">My Professional Experience</h1>
             {jobs.map((job) => (
-                <>
-                    <WorkItem
-                        title={job.title}
-                        desc={job.desc}
-                        logo={job.logo}
-                    />
-                </>
+                <WorkItem
+                    key={job.title}
+                    title={job.title}
+                    desc={job.desc}
+                    logo={job.logo}
+                />
             ))}
         </div>
     );
