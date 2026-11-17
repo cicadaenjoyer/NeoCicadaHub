@@ -6,7 +6,8 @@ Mockups for the next version of the site, styled after the Blue Archive game UI.
 
 | Path | What it is |
 |---|---|
-| `mockups/cicadahub-v4-hub-lobby.html` | **Current draft (v4.1).** Lobby based on the game's hub screen. |
+| `mockups/v5/index.html` + `mockups/v5/assets/` | **Current draft (v5).** Lobby with a story dialogue box and choice buttons, a permanent bottom menu, and full-resolution images. Assets are separate files, so open it through a local server or the published preview. |
+| `mockups/cicadahub-v4-hub-lobby.html` | Previous draft (v4.1). Lobby based on the game's hub screen. |
 | `mockups/cicadahub-v3-game-lobby.html` | Earlier draft (v3), based on the game's main lobby with a bottom menu. Kept for comparison. |
 | `mockups/screenshots/` | v4.1 rendered at desktop (1600 px), tablet (820 px) and phone (400 px) for every screen, plus the Work popup. |
 
@@ -20,6 +21,7 @@ Each mockup is a single self-contained HTML file. Open it in a browser; no build
 | v2 | Rebuilt from real screenshots (chat window, story select, schedule) | Mostly white panels, navy bold-italic titles with a yellow underline bar, cyan and yellow buttons. Avatar was still front and center. |
 | v3 | Main lobby layout with corner-pinned UI and a bottom menu | Avatar removed in favor of a drawn wallpaper. Live GitHub avatar, real tech logos, project galleries. Chat reply feature removed. Fixed the bug where the Work popup opened below the page. |
 | v4 / v4.1 | **Hub screen layout** (the user's preferred reference) | Flat white top bar, profile bubble and speech bubble on the left, a tilted cluster of picture cards on the right, no bottom menu. v4.1 fixes problems found in the screenshots (card images, bubble height, vertical centering). |
+| v5 | **Rework for visitors who don't know the game** | Bottom menu with icon and label on every screen. Removed game-only parts with no meaning on a portfolio: resource counters with "+", Notice, "1 new" badges, the wallpaper toggle and decorative dots. Every action is a labeled button (Details, View project, Copy address, Open ↗). No perspective or skew on images or body text. Screenshots load at full resolution and fit their frame instead of being cropped. The avatar was rebuilt as a clean 32×32 PNG and is shown at integer scales. Colors and shapes were checked against the game's own Common UI sprite atlas, and the type uses the game's fonts (Noto Sans and M PLUS 1p). Background music and the About photo gallery were removed to keep the site focused on projects. |
 
 ## Visual rules (sampled from game screenshots)
 
