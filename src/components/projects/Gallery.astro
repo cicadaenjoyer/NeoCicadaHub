@@ -73,7 +73,8 @@ const chev = (d: 1 | -1) => (d > 0 ? "m9 5 7 7-7 7" : "m15 5-7 7 7 7");
     background: linear-gradient(160deg, var(--panel-3), var(--sky-2)); }
   .gstage[data-tone="dark"] { background: radial-gradient(120% 100% at 50% 0%, #3a2140, #170d1b); }
   .gstage[data-tone="navy"] { background: radial-gradient(120% 100% at 50% 0%, #26324a, #111827); }
-  .gstage img, .gstage video { max-width: 100%; max-height: 100%; width: auto; height: auto; display: block; border-radius: 6px; box-shadow: 0 10px 24px -10px rgba(0, 0, 0, .55); }
+  /* :global — the gallery script swaps in new <img>/<video> elements that carry no scope attribute. */
+  .gstage :global(img), .gstage :global(video) { max-width: 100%; max-height: 100%; width: auto; height: auto; display: block; border-radius: 6px; box-shadow: 0 10px 24px -10px rgba(0, 0, 0, .55); }
   .gstage .round { position: absolute; top: 50%; translate: 0 -50%; }
   .gstage .p { left: 10px; } .gstage .n { right: 10px; }
   .gcount { position: absolute; right: 10px; bottom: 10px; padding: 1px 9px; border-radius: 10px; font-size: .76rem; font-weight: 700; color: var(--panel);
@@ -85,3 +86,56 @@ const chev = (d: 1 | -1) => (d > 0 ? "m9 5 7 7-7 7" : "m15 5-7 7 7 7");
   .thumbs button[aria-current="true"] { opacity: 1; box-shadow: 0 0 0 3px var(--cyan); }
   @container app (max-width: 639px) { .gstage { height: 300px; } }
 </style>
+
+<script>
+  import { onPage } from "../../scripts/lifecycle";
+
+  onPage("[data-gallery]", (root) => {
+    const thumbs = [...root.querySelectorAll<HTMLButtonElement>("[data-img]")];
+    const n = thumbs.length;
+    if (n < 2) return;
+    const stage = root.querySelector<HTMLElement>("[data-stage]")!;
+    const count = stage.querySelector<HTMLElement>(".gcount")!;
+    const caption = root.querySelector<HTMLElement>(".gcap")!;
+    let cur = 0;
+
+    const media = (d: DOMStringMap): HTMLElement => {
+      if (d.mp4 && d.webm) {
+        const v = document.createElement("video");
+        Object.assign(v, { autoplay: true, muted: true, defaultMuted: true, loop: true, playsInline: true, poster: d.full ?? "" });
+        v.setAttribute("aria-label", d.alt ?? "");
+        for (const [src, type] of [[d.webm, "video/webm"], [d.mp4, "video/mp4"]] as const) {
+          const s = document.createElement("source");
+          Object.assign(s, { src, type });
+          v.append(s);
+        }
+        return v;
+      }
+      const img = document.createElement("img");
+      Object.assign(img, { src: d.full ?? "", alt: d.alt ?? "" });
+      return img;
+    };
+
+    const show = (i: number) => {
+      cur = ((i % n) + n) % n;
+      const d = thumbs[cur]!.dataset;
+      stage.querySelector("img, video")?.replaceWith(media(d));
+      count.textContent = `${cur + 1} / ${n}`;
+      caption.textContent = d.caption ?? "";
+      thumbs.forEach((b, k) => b.setAttribute("aria-current", String(k === cur)));
+    };
+
+    root.addEventListener("click", (e) => {
+      const target = e.target as Element;
+      const step = target.closest<HTMLElement>("[data-gstep]");
+      const thumb = target.closest<HTMLElement>("[data-img]");
+      if (step) show(cur + Number(step.dataset.gstep));
+      if (thumb) show(Number(thumb.dataset.img));
+    });
+    stage.addEventListener("keydown", (e) => {
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+      e.preventDefault();
+      show(cur + (e.key === "ArrowRight" ? 1 : -1));
+    });
+  });
+</script>

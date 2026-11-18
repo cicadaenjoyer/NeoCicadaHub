@@ -49,3 +49,80 @@ const chev = (d: 1 | -1) => (d > 0 ? "m9 5 7 7-7 7" : "m15 5-7 7 7 7");
     .bnav { display: none; }
   }
 </style>
+
+<script>
+  import { onPage } from "../../scripts/lifecycle";
+  import { prefersReducedMotion } from "../../scripts/motion";
+
+  const ADVANCE_MS = 6000;
+  const SWIPE_PX = 40;
+
+  onPage("[data-banner]", (root) => {
+    const slides = [...root.querySelectorAll<HTMLElement>("[data-slide]")];
+    const dots = [...root.querySelectorAll<HTMLElement>("[data-dot]")];
+    const n = slides.length;
+    let cur = 0;
+    let timer: number | undefined;
+
+    const slideTo = (i: number) => {
+      cur = ((i % n) + n) % n;
+      slides.forEach((s, k) => (s.hidden = k !== cur));
+      dots.forEach((d, k) => d.setAttribute("aria-current", String(k === cur)));
+    };
+    const stop = () => {
+      clearInterval(timer);
+      timer = undefined;
+    };
+    const start = () => {
+      stop();
+      if (n > 1 && !prefersReducedMotion()) timer = window.setInterval(() => slideTo(cur + 1), ADVANCE_MS);
+    };
+
+    root.addEventListener("click", (e) => {
+      const target = e.target as Element;
+      const step = target.closest<HTMLElement>("[data-bstep]");
+      const dot = target.closest<HTMLElement>("[data-dot]");
+      if (step) slideTo(cur + Number(step.dataset.bstep));
+      if (dot) slideTo(Number(dot.dataset.dot));
+      if (step || dot) start();
+    });
+
+    // Touch swipe; a swipe must not also follow the slide's link.
+    let x0: number | null = null;
+    let swiped = false;
+    root.addEventListener("pointerdown", (e) => {
+      if (e.pointerType === "mouse") return;
+      x0 = e.clientX;
+      swiped = false;
+    });
+    root.addEventListener("pointerup", (e) => {
+      if (x0 === null) return;
+      const dx = e.clientX - x0;
+      x0 = null;
+      if (Math.abs(dx) < SWIPE_PX) return;
+      swiped = true;
+      slideTo(cur + (dx < 0 ? 1 : -1));
+      start();
+    });
+    root.addEventListener(
+      "click",
+      (e) => {
+        if (swiped && (e.target as Element).closest("[data-slide]")) {
+          e.preventDefault();
+          swiped = false;
+        }
+      },
+      true,
+    );
+
+    root.addEventListener("mouseenter", stop);
+    root.addEventListener("mouseleave", start);
+    root.addEventListener("focusin", stop);
+    root.addEventListener("focusout", (e) => {
+      if (!root.contains(e.relatedTarget as Node | null)) start();
+    });
+
+    start();
+    return stop;
+  });
+</script>

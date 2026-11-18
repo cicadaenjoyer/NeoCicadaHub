@@ -6,11 +6,11 @@ export default defineConfig({
   testDir: "tests",
   fullyParallel: true,
   reporter: "line",
-  use: { baseURL: "http://localhost:4321" },
+  use: { baseURL: "http://localhost:4399" },
   webServer: {
     // `exec` replaces the shell with the server, so Playwright can stop it.
-    command: "./node_modules/.bin/astro build && exec node tests/serve.mjs 4321",
-    url: "http://localhost:4321",
+    command: "./node_modules/.bin/astro build && exec node tests/serve.mjs 4399",
+    url: "http://localhost:4399",
     reuseExistingServer: false,
     timeout: 180_000,
   },
