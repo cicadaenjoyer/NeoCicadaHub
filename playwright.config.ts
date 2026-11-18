@@ -8,9 +8,10 @@ export default defineConfig({
   reporter: "line",
   use: { baseURL: "http://localhost:4321" },
   webServer: {
-    command: "yarn astro build && yarn astro preview --port 4321",
+    // `exec` replaces the shell with the server, so Playwright can stop it.
+    command: "./node_modules/.bin/astro build && exec node tests/serve.mjs 4321",
     url: "http://localhost:4321",
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: false,
     timeout: 180_000,
   },
   projects: [
