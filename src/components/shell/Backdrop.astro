@@ -1,2 +1,9 @@
-<!-- Canvas scenes are drawn in Task 10; until then the .app gradient shows through. -->
-<canvas class="bg" aria-hidden="true" transition:persist="backdrop"></canvas>
+<!-- Persisted across navigations; redrawn per screen (lobby scene on Home, low-poly elsewhere). -->
+<canvas class="bg" aria-hidden="true" transition:persist="backdrop" data-backdrop></canvas>
+
+<script>
+  import { mountBackdrop } from "../../scripts/backdrop";
+  // Module scripts run once per full page load (ClientRouter doesn't re-run them), and the canvas persists.
+  const canvas = document.querySelector<HTMLCanvasElement>("[data-backdrop]");
+  if (canvas) mountBackdrop(canvas);
+</script>

@@ -51,3 +51,43 @@ test("no horizontal overflow", async ({ page }) => {
     await expectNoHorizontalOverflow(page);
   }
 });
+
+test("backdrop switches scene between home and sub-screens", async ({ page }) => {
+  await page.goto("/");
+  const px = () =>
+    page.locator("canvas.bg").evaluate((c: HTMLCanvasElement) =>
+      Array.from(c.getContext("2d")!.getImageData(2, 2, 1, 1).data).join(","),
+    );
+  await expect.poll(px).not.toBe("0,0,0,0");
+  const home = await px();
+  await page.locator(".dock a", { hasText: "Work" }).click();
+  await expect(page).toHaveURL("/work/");
+  await expect.poll(px).not.toBe(home);
+});
+
+test("backdrop redraws on resize after navigating", async ({ page }) => {
+  await page.goto("/");
+  await page.locator(".dock a", { hasText: "Work" }).click();
+  await expect(page).toHaveURL("/work/");
+  const size = () => page.locator("canvas.bg").evaluate((c: HTMLCanvasElement) => c.width / Math.min(2, devicePixelRatio || 1));
+  const vp = page.viewportSize()!;
+  await page.setViewportSize({ width: vp.width - 50, height: vp.height });
+  await expect.poll(size).toBe(vp.width - 50);
+});
+
+test("persistent shell scripts wire up only once", async ({ page }) => {
+  await page.goto("/");
+  await page.evaluate(() => {
+    const add = document.addEventListener.bind(document);
+    (window as any).__swapListeners = 0;
+    document.addEventListener = ((type: string, ...rest: any[]) => {
+      if (type === "astro:after-swap") (window as any).__swapListeners++;
+      return (add as any)(type, ...rest);
+    }) as typeof document.addEventListener;
+  });
+  for (const label of ["Work", "About", "Contact"]) {
+    await page.locator(".dock a", { hasText: label }).click();
+    await expect(page).toHaveURL(new RegExp(`/${label.toLowerCase()}/$`));
+  }
+  expect(await page.evaluate(() => (window as any).__swapListeners)).toBe(0);
+});
