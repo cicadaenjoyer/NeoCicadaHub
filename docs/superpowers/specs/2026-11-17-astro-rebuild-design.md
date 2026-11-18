@@ -296,6 +296,8 @@ The social preview image `og.png` (1200×630) is built once from the Home screen
 - Playwright runs against `astro preview`. For each route at 390, 820 and 1440 widths it checks: no console errors, no horizontal overflow (`scrollWidth <= clientWidth`), the axe check passes, and the full-page screenshot matches its baseline.
 - Optional follow-up, not required for launch: a GitHub Actions workflow running `withastro/action` on pushes to `main`, replacing manual `yarn deploy`.
 
+> **Update (after implementation):** deployment moved to GitHub Actions (`.github/workflows/deploy.yml`) at the user's request. It type-checks, runs the Playwright suite and uploads `dist/` as a Pages artifact on every push to `main` (plus a weekly rebuild to re-sync the avatar). Pull requests get the same checks without deploying. The `gh-pages` branch deploy and `yarn deploy` script were removed. This also avoids GitHub Pages' Jekyll step, which drops Astro's `_astro/` folder. Screenshot tests run locally only, because CI runners have different fallback fonts.
+
 ## 15. Build order
 
 Each step ends in a working `astro dev`.

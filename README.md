@@ -22,4 +22,6 @@ Requires Node 24 (see `.nvmrc`).
 | `yarn format` | Format with Prettier                                                    |
 | `yarn deploy` | Build and publish `dist/` to GitHub Pages                               |
 
+Pushing to `main` deploys the site: GitHub Actions (`.github/workflows/deploy.yml`) type-checks, runs the Playwright suite and publishes `dist/` to GitHub Pages. Pull requests get the same checks without deploying, and a weekly rebuild keeps the GitHub avatar in sync. Screenshot tests run locally only.
+
 Content lives in `src/content/` (projects, jobs, skills, site info and bio). Design notes and the original mockups are in `design/`, and the rebuild spec is in `docs/superpowers/specs/`.

@@ -4,6 +4,10 @@ import { ROUTES } from "./helpers";
 // Deterministic screens: reduced motion shows the tagline whole, and Math.random() = 0 picks the first one.
 test.use({ reducedMotion: "reduce" });
 
+// Baselines are rendered on the developer's Linux machine; CI runners have different system
+// fallback fonts (monospace email, the △×+○ glyphs), so screenshots are compared locally only.
+test.skip(!!process.env.CI, "screenshot baselines are machine-specific");
+
 for (const r of ROUTES) {
   test(`visual ${r}`, async ({ page }) => {
     await page.clock.install();
