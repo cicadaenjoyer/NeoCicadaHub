@@ -6,14 +6,31 @@ import JobCard from "../components/work/JobCard.astro";
 
 const jobs = (await getCollection("jobs")).sort((a, b) => a.data.order - b.data.order);
 ---
-<AppShell screen="work" title="Work" pageTitle="Work · Abraham Hernandez" description="Where Abraham Hernandez has worked, from More Vang to iD Tech and RIT.">
+
+<AppShell
+  screen="work"
+  title="Work"
+  pageTitle="Work · Abraham Hernandez"
+  description="Where Abraham Hernandez has worked, from More Vang to iD Tech and RIT."
+>
   <section class="s-work wrap" aria-label="Work">
     <SectionBar>Work history · newest first</SectionBar>
-    <div class="jobs">{jobs.map((job) => <JobCard job={job} />)}</div>
+    <div class="jobs">
+      {jobs.map((job) => (
+        <JobCard job={job} />
+      ))}
+    </div>
   </section>
 </AppShell>
 
 <style>
-  .s-work { display: grid; gap: 12px; align-content: start; }
-  .jobs { display: grid; gap: 10px; }
+  .s-work {
+    display: grid;
+    gap: 12px;
+    align-content: start;
+  }
+  .jobs {
+    display: grid;
+    gap: 10px;
+  }
 </style>

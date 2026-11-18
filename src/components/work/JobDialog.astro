@@ -5,49 +5,145 @@ import SectionBar from "../ui/SectionBar.astro";
 import Chip from "../ui/Chip.astro";
 import Button from "../ui/Button.astro";
 
-interface Props { job: CollectionEntry<"jobs"> }
+interface Props {
+  job: CollectionEntry<"jobs">;
+}
 const { job } = Astro.props;
 const j = job.data;
 const titleId = `job-${job.id}-t`;
 ---
+
 <dialog class="win" id={`job-${job.id}`} aria-labelledby={titleId}>
   <div class="win-head">
-    <h2 id={titleId}><span class="hl">{j.title}</span></h2>
+    <h2 id={titleId}>
+      <span class="hl">{j.title}</span>
+    </h2>
     <button class="x" type="button" data-close aria-label="Close">
-      <svg width="20" height="20" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true">
+        <path d="M6 6l12 12M18 6 6 18"></path>
+      </svg>
     </button>
   </div>
   <div class="win-body">
     <div class="card org">
-      <span class="logo"><Image src={j.logo} alt="" width={112} /></span>
-      <div><b>{j.org}</b><div><Chip tone={j.current ? "now" : undefined}>{j.current ? "Current role" : "Previous role"}</Chip></div></div>
+      <span class="logo">
+        <Image src={j.logo} alt="" width={112} />
+      </span>
+      <div>
+        <b>{j.org}</b>
+        <div>
+          <Chip tone={j.current ? "now" : undefined}>{j.current ? "Current role" : "Previous role"}</Chip>
+        </div>
+      </div>
     </div>
     <SectionBar>What I did</SectionBar>
-    <div class="card"><p>{j.desc}</p></div>
+    <div class="card">
+      <p>{j.desc}</p>
+    </div>
     <SectionBar>Tools</SectionBar>
-    <div class="chips tools">{j.tools.map((t) => <Chip>{t}</Chip>)}</div>
+    <div class="chips tools">
+      {j.tools.map((t) => (
+        <Chip>{t}</Chip>
+      ))}
+    </div>
   </div>
   <div class="win-foot">
-    <Button variant="w" data-close>Close</Button>
-    <Button variant="y" href="/projects/">See my projects</Button>
+    <Button variant="w" data-close>
+      Close
+    </Button>
+    <Button variant="y" href="/projects/">
+      See my projects
+    </Button>
   </div>
 </dialog>
 
 <style>
-  .win { padding: 0; border: 0; color: inherit; width: min(680px, calc(100% - 32px)); max-height: calc(100% - 32px); overflow: auto;
-    background: var(--panel-3); border-radius: 10px; box-shadow: 0 24px 60px -20px rgba(10, 20, 40, .7); }
-  .win[open] { animation: pop .18s ease-out; }
-  .win::backdrop { background: color-mix(in srgb, var(--navy-3) 55%, transparent); }
-  @keyframes pop { from { opacity: 0; scale: .96; } }
-  .win-head { position: sticky; top: 0; z-index: 1; display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 12px 10px 18px; background: var(--panel); }
-  .win-head h2 { margin: 0; font-family: var(--f-disp); font-size: 1.25rem; font-style: italic; font-weight: 800; }
-  .x { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; color: var(--slate); background: var(--panel-3); flex: none; }
-  .x:hover { color: var(--navy-3); background: var(--line); }
-  .win-body { padding: 16px; display: grid; gap: 12px; }
-  .card { background: var(--panel); border-radius: 6px; padding: 12px 14px; box-shadow: 0 1px 0 var(--line); }
-  .card p { margin: 0; line-height: 1.7; }
-  .org { display: flex; gap: 14px; align-items: center; }
-  .org b { font-size: 1.05rem; }
-  .tools :global(.chip) { background: var(--panel); }
-  .win-foot { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; padding: 2px 16px 18px; }
+  .win {
+    padding: 0;
+    border: 0;
+    color: inherit;
+    width: min(680px, calc(100% - 32px));
+    max-height: calc(100% - 32px);
+    overflow: auto;
+    background: var(--panel-3);
+    border-radius: 10px;
+    box-shadow: 0 24px 60px -20px rgba(10, 20, 40, 0.7);
+  }
+  .win[open] {
+    animation: pop 0.18s ease-out;
+  }
+  .win::backdrop {
+    background: color-mix(in srgb, var(--navy-3) 55%, transparent);
+  }
+  @keyframes pop {
+    from {
+      opacity: 0;
+      scale: 0.96;
+    }
+  }
+  .win-head {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 12px 10px 18px;
+    background: var(--panel);
+  }
+  .win-head h2 {
+    margin: 0;
+    font-family: var(--f-disp);
+    font-size: 1.25rem;
+    font-style: italic;
+    font-weight: 800;
+  }
+  .x {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: var(--slate);
+    background: var(--panel-3);
+    flex: none;
+  }
+  .x:hover {
+    color: var(--navy-3);
+    background: var(--line);
+  }
+  .win-body {
+    padding: 16px;
+    display: grid;
+    gap: 12px;
+  }
+  .card {
+    background: var(--panel);
+    border-radius: 6px;
+    padding: 12px 14px;
+    box-shadow: 0 1px 0 var(--line);
+  }
+  .card p {
+    margin: 0;
+    line-height: 1.7;
+  }
+  .org {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+  .org b {
+    font-size: 1.05rem;
+  }
+  .tools :global(.chip) {
+    background: var(--panel);
+  }
+  .win-foot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    padding: 2px 16px 18px;
+  }
 </style>

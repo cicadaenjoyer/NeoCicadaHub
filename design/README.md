@@ -1,6 +1,6 @@
 # CicadaHub redesign: design drafts
 
-Mockups for the next version of the site, styled after the Blue Archive game UI. These are **drafts for review**, not production code. The real rebuild will happen in a new Astro project (see [Recommended stack](#recommended-stack)).
+Mockups for the next version of the site, styled after the Blue Archive game UI. These are **drafts for review**, not production code. The production site is built from them in Astro (see [Stack](#stack)).
 
 ## What's here
 
@@ -40,17 +40,9 @@ Each mockup is a single self-contained HTML file. Open it in a browser; no build
 - **About** shows real tech logos (from Simple Icons, the same set `react-icons/si` uses), not text abbreviations.
 - **Contact** shows LinkedIn, email with a copy button, and GitHub. There is no reply feature.
 
-## Recommended stack
+## Stack
 
-| Layer | Choice | Why |
-|---|---|---|
-| Framework | Astro + React islands | The site is mostly static, so Astro ships plain HTML. React loads only for interactive parts (music, galleries, popups). |
-| Content | Astro content collections + Zod | Jobs and projects become typed Markdown files, so a missing image or wrong field fails the build. |
-| Styling | Tailwind CSS v4 + container queries | Design tokens defined once. Components respond to their own width, as in the mockups. |
-| Motion | Motion + Astro View Transitions | Page transitions and hover effects, with reduced-motion support. |
-| Audio | Howler.js | Reliable playlists and mobile playback. |
-| Quality | TypeScript strict, Biome, Vitest, Playwright | Playwright screenshots every page at phone, tablet and desktop sizes in CI. |
-| Hosting | Cloudflare Pages or Vercel + GitHub Actions | A preview link for every pull request. |
+The site was rebuilt from these mockups in Astro with no UI framework. See [the rebuild spec](../docs/superpowers/specs/2026-11-17-astro-rebuild-design.md) for the stack and how each part of the mockup was ported.
 
 ## References
 

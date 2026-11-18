@@ -1,11 +1,11 @@
 [
-  {"id": "typescript", "label": "TypeScript", "icon": "siTypescript", "color": "#3178c6", "order": 1},
-  {"id": "python", "label": "Python", "icon": "siPython", "color": "#3776ab", "order": 2},
-  {"id": "c", "label": "C", "icon": "siC", "color": "#5c6bc0", "order": 3},
-  {"id": "cplusplus", "label": "C++", "icon": "siCplusplus", "color": "#00599c", "order": 4},
-  {"id": "ruby", "label": "Ruby", "icon": "siRuby", "color": "#cc342d", "order": 5},
-  {"id": "react", "label": "React", "icon": "siReact", "color": "#149eca", "order": 6},
-  {"id": "git", "label": "Git", "icon": "siGit", "color": "#f05032", "order": 7},
-  {"id": "docker", "label": "Docker", "icon": "siDocker", "color": "#2496ed", "order": 8},
-  {"id": "mysql", "label": "MySQL", "icon": "siMysql", "color": "#4479a1", "order": 9}
+  { "id": "typescript", "label": "TypeScript", "icon": "siTypescript", "color": "#3178c6", "order": 1 },
+  { "id": "python", "label": "Python", "icon": "siPython", "color": "#3776ab", "order": 2 },
+  { "id": "c", "label": "C", "icon": "siC", "color": "#5c6bc0", "order": 3 },
+  { "id": "cplusplus", "label": "C++", "icon": "siCplusplus", "color": "#00599c", "order": 4 },
+  { "id": "ruby", "label": "Ruby", "icon": "siRuby", "color": "#cc342d", "order": 5 },
+  { "id": "react", "label": "React", "icon": "siReact", "color": "#149eca", "order": 6 },
+  { "id": "git", "label": "Git", "icon": "siGit", "color": "#f05032", "order": 7 },
+  { "id": "docker", "label": "Docker", "icon": "siDocker", "color": "#2496ed", "order": 8 },
+  { "id": "mysql", "label": "MySQL", "icon": "siMysql", "color": "#4479a1", "order": 9 }
 ]

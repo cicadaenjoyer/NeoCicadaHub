@@ -8,11 +8,14 @@ for (const s of skills) {
   if (!icons[s.data.icon]) throw new Error(`Unknown simple-icons export "${s.data.icon}" for skill "${s.id}"`);
 }
 ---
+
 <div class="items">
   {skills.map((s) => (
     <div class="itm">
       <span class="ic">
-        <svg viewBox="0 0 24 24" role="img" aria-label={`${s.data.label} logo`}><path fill={s.data.color} d={icons[s.data.icon]!.path}></path></svg>
+        <svg viewBox="0 0 24 24" role="img" aria-label={`${s.data.label} logo`}>
+          <path fill={s.data.color} d={icons[s.data.icon]!.path}></path>
+        </svg>
       </span>
       <span class="nm">{s.data.label}</span>
     </div>
@@ -20,9 +23,37 @@ for (const s of skills) {
 </div>
 
 <style>
-  .items { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; }
-  .itm { background: var(--panel); border-radius: 6px; overflow: hidden; box-shadow: 0 0 0 1px var(--line), 0 2px 0 var(--line); display: grid; }
-  .ic { aspect-ratio: 1.25; max-width: 100%; display: grid; place-items: center; background: linear-gradient(135deg, var(--panel) 42%, var(--sky-2) 42% 58%, var(--panel) 58%); }
-  .ic svg { width: 40%; height: auto; }
-  .nm { background: var(--slate); color: var(--panel); text-align: center; font-weight: 700; font-size: .8rem; padding: 4px; }
+  .items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+  }
+  .itm {
+    background: var(--panel);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow:
+      0 0 0 1px var(--line),
+      0 2px 0 var(--line);
+    display: grid;
+  }
+  .ic {
+    aspect-ratio: 1.25;
+    max-width: 100%;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, var(--panel) 42%, var(--sky-2) 42% 58%, var(--panel) 58%);
+  }
+  .ic svg {
+    width: 40%;
+    height: auto;
+  }
+  .nm {
+    background: var(--slate);
+    color: var(--panel);
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 4px;
+  }
 </style>

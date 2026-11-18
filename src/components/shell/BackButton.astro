@@ -1,11 +1,44 @@
 <button class="back" type="button" data-back aria-label="Back" title="Back">
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H5M11 5l-7 7 7 7"></path></svg>
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M20 12H5M11 5l-7 7 7 7"></path>
+  </svg>
 </button>
 
 <style>
-  .back { width: 48px; height: 48px; flex: none; border-radius: 50%; display: grid; place-items: center; background: var(--navy-2); color: var(--panel);
-    box-shadow: 0 3px 0 var(--navy-3), 0 6px 12px -4px color-mix(in srgb, var(--navy) 60%, transparent); }
-  .back:hover { background: var(--navy); }
-  .back:active { translate: 0 2px; box-shadow: 0 1px 0 var(--navy-3); }
-  @container app (max-width: 639px) { .back { width: 42px; height: 42px; } }
+  .back {
+    width: 48px;
+    height: 48px;
+    flex: none;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--navy-2);
+    color: var(--panel);
+    box-shadow:
+      0 3px 0 var(--navy-3),
+      0 6px 12px -4px color-mix(in srgb, var(--navy) 60%, transparent);
+  }
+  .back:hover {
+    background: var(--navy);
+  }
+  .back:active {
+    translate: 0 2px;
+    box-shadow: 0 1px 0 var(--navy-3);
+  }
+  @container app (max-width: 639px) {
+    .back {
+      width: 42px;
+      height: 42px;
+    }
+  }
 </style>

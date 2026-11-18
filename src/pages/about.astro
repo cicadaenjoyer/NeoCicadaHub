@@ -3,7 +3,13 @@ import AppShell from "../layouts/AppShell.astro";
 import ProfileCard from "../components/about/ProfileCard.astro";
 import AboutTabs from "../components/about/AboutTabs.astro";
 ---
-<AppShell screen="about" title="About" pageTitle="About · Abraham Hernandez" description="A little about Abraham Hernandez: background, goals and the languages and tools he uses.">
+
+<AppShell
+  screen="about"
+  title="About"
+  pageTitle="About · Abraham Hernandez"
+  description="A little about Abraham Hernandez: background, goals and the languages and tools he uses."
+>
   <section class="s-about wrap" aria-label="About">
     <ProfileCard />
     <AboutTabs />
@@ -11,7 +17,20 @@ import AboutTabs from "../components/about/AboutTabs.astro";
 </AppShell>
 
 <style>
-  .s-about { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); align-items: start; }
-  @container app (min-width: 640px) { .s-about { grid-template-columns: 260px minmax(0, 1fr); } }
-  @container app (min-width: 1024px) { .s-about { grid-template-columns: 300px minmax(0, 1fr); } }
+  .s-about {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+  @container app (min-width: 640px) {
+    .s-about {
+      grid-template-columns: 260px minmax(0, 1fr);
+    }
+  }
+  @container app (min-width: 1024px) {
+    .s-about {
+      grid-template-columns: 300px minmax(0, 1fr);
+    }
+  }
 </style>

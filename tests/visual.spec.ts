@@ -7,7 +7,9 @@ test.use({ reducedMotion: "reduce" });
 for (const r of ROUTES) {
   test(`visual ${r}`, async ({ page }) => {
     await page.clock.install();
-    await page.addInitScript(() => { Math.random = () => 0; });
+    await page.addInitScript(() => {
+      Math.random = () => 0;
+    });
     await page.goto(r);
     await expect(page).toHaveScreenshot({
       fullPage: true,

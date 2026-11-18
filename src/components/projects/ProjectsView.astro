@@ -3,15 +3,28 @@ import type { CollectionEntry } from "astro:content";
 import ProjectList from "./ProjectList.astro";
 import ProjectDetail from "./ProjectDetail.astro";
 
-interface Props { projects: CollectionEntry<"projects">[]; active: CollectionEntry<"projects"> }
+interface Props {
+  projects: CollectionEntry<"projects">[];
+  active: CollectionEntry<"projects">;
+}
 const { projects, active } = Astro.props;
 ---
+
 <section class="s-projects wrap" aria-label="Projects">
   <ProjectList projects={projects} activeId={active.id} />
   <ProjectDetail project={active} />
 </section>
 
 <style>
-  .s-projects { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); align-items: start; }
-  @container app (min-width: 1024px) { .s-projects { grid-template-columns: 330px minmax(0, 1fr); } }
+  .s-projects {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+  @container app (min-width: 1024px) {
+    .s-projects {
+      grid-template-columns: 330px minmax(0, 1fr);
+    }
+  }
 </style>

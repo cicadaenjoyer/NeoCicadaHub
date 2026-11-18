@@ -3,3 +3,6 @@ dist/
 .astro/
 yarn.lock
 tests/**/*-snapshots/
+docs/
+.superpowers/
+public/

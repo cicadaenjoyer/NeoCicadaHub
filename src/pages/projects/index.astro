@@ -6,6 +6,13 @@ import ProjectsView from "../../components/projects/ProjectsView.astro";
 const projects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
 const active = projects[0]!;
 ---
-<AppShell screen="projects" title="Projects" pageTitle="Projects · Abraham Hernandez" description="Projects built by Abraham Hernandez: Tabi, a C database system and a D&D dice store." canonical={`/projects/${active.id}/`}>
+
+<AppShell
+  screen="projects"
+  title="Projects"
+  pageTitle="Projects · Abraham Hernandez"
+  description="Projects built by Abraham Hernandez: Tabi, a C database system and a D&D dice store."
+  canonical={`/projects/${active.id}/`}
+>
   <ProjectsView projects={projects} active={active} />
 </AppShell>

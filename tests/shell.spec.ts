@@ -55,9 +55,7 @@ test("no horizontal overflow", async ({ page }) => {
 test("backdrop switches scene between home and sub-screens", async ({ page }) => {
   await page.goto("/");
   const px = () =>
-    page.locator("canvas.bg").evaluate((c: HTMLCanvasElement) =>
-      Array.from(c.getContext("2d")!.getImageData(2, 2, 1, 1).data).join(","),
-    );
+    page.locator("canvas.bg").evaluate((c: HTMLCanvasElement) => Array.from(c.getContext("2d")!.getImageData(2, 2, 1, 1).data).join(","));
   await expect.poll(px).not.toBe("0,0,0,0");
   const home = await px();
   await page.locator(".dock a", { hasText: "Work" }).click();

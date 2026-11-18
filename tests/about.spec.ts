@@ -18,7 +18,17 @@ test.describe("without JS", () => {
 
 test("skills keep the mockup's order", async ({ page }) => {
   await page.goto("/about/");
-  await expect(page.locator("#pane-skills .nm")).toHaveText(["TypeScript", "Python", "C", "C++", "Ruby", "React", "Git", "Docker", "MySQL"]);
+  await expect(page.locator("#pane-skills .nm")).toHaveText([
+    "TypeScript",
+    "Python",
+    "C",
+    "C++",
+    "Ruby",
+    "React",
+    "Git",
+    "Docker",
+    "MySQL",
+  ]);
 });
 
 test("tabs switch by click and arrow keys", async ({ page }) => {

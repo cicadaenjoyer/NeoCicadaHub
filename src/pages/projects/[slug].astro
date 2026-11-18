@@ -7,9 +7,13 @@ export async function getStaticPaths() {
   const projects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
   return projects.map((project) => ({ params: { slug: project.id }, props: { project, projects } }));
 }
-interface Props { project: CollectionEntry<"projects">; projects: CollectionEntry<"projects">[] }
+interface Props {
+  project: CollectionEntry<"projects">;
+  projects: CollectionEntry<"projects">[];
+}
 const { project, projects } = Astro.props;
 ---
+
 <AppShell screen="projects" title="Projects" pageTitle={`${project.data.title} · Abraham Hernandez`} description={project.data.line}>
   <ProjectsView projects={projects} active={project} />
 </AppShell>

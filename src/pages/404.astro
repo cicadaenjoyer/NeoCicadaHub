@@ -2,19 +2,45 @@
 import AppShell from "../layouts/AppShell.astro";
 import Button from "../components/ui/Button.astro";
 ---
+
 <AppShell screen="notfound" title="Not found" pageTitle="Not found · Abraham Hernandez" description="This page doesn't exist.">
   <section class="wrap nf">
     <div class="panel card">
-      <h1><span class="hl">Not found</span></h1>
+      <h1>
+        <span class="hl">Not found</span>
+      </h1>
       <p>That page doesn't exist.</p>
-      <Button variant="y" href="/">Back to Home</Button>
+      <Button variant="y" href="/">
+        Back to Home
+      </Button>
     </div>
   </section>
 </AppShell>
 
 <style>
-  .nf { display: grid; place-items: center; min-height: 100%; }
-  .card { display: grid; justify-items: start; gap: 12px; padding: 24px; max-width: 460px; width: 100%; }
-  h1 { margin: 0; font-family: var(--f-disp); font-style: italic; font-weight: 800; font-size: 1.7rem; }
-  p { margin: 0; color: var(--ink-2); font-weight: 600; }
+  .nf {
+    display: grid;
+    place-items: center;
+    min-height: 100%;
+  }
+  .card {
+    display: grid;
+    justify-items: start;
+    gap: 12px;
+    padding: 24px;
+    max-width: 460px;
+    width: 100%;
+  }
+  h1 {
+    margin: 0;
+    font-family: var(--f-disp);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 1.7rem;
+  }
+  p {
+    margin: 0;
+    color: var(--ink-2);
+    font-weight: 600;
+  }
 </style>

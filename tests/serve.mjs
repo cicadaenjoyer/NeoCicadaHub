@@ -8,11 +8,22 @@ import { extname, join, normalize } from "node:path";
 const root = new URL("../dist/", import.meta.url).pathname;
 const port = Number(process.argv[2] ?? 4321);
 const types = {
-  ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".css": "text/css",
-  ".json": "application/json", ".xml": "application/xml", ".svg": "image/svg+xml",
-  ".png": "image/png", ".jpg": "image/jpeg", ".webp": "image/webp", ".avif": "image/avif",
-  ".gif": "image/gif", ".ico": "image/x-icon", ".woff2": "font/woff2",
-  ".mp4": "video/mp4", ".webm": "video/webm", ".txt": "text/plain",
+  ".html": "text/html; charset=utf-8",
+  ".js": "text/javascript",
+  ".css": "text/css",
+  ".json": "application/json",
+  ".xml": "application/xml",
+  ".svg": "image/svg+xml",
+  ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".webp": "image/webp",
+  ".avif": "image/avif",
+  ".gif": "image/gif",
+  ".ico": "image/x-icon",
+  ".woff2": "font/woff2",
+  ".mp4": "video/mp4",
+  ".webm": "video/webm",
+  ".txt": "text/plain",
 };
 
 async function resolve(urlPath) {

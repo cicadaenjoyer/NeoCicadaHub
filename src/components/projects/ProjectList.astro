@@ -4,39 +4,117 @@ import type { CollectionEntry } from "astro:content";
 import SectionBar from "../ui/SectionBar.astro";
 import Chip from "../ui/Chip.astro";
 
-interface Props { projects: CollectionEntry<"projects">[]; activeId: string }
+interface Props {
+  projects: CollectionEntry<"projects">[];
+  activeId: string;
+}
 const { projects, activeId } = Astro.props;
 ---
+
 <div class="plist">
   <SectionBar>{projects.length} projects · pick one</SectionBar>
   {projects.map((p) => (
     <a class="prow" href={`/projects/${p.id}/#detail`} aria-current={p.id === activeId ? "page" : undefined}>
-      <span class="th"><Image src={p.data.thumb} alt="" width={184} /></span>
+      <span class="th">
+        <Image src={p.data.thumb} alt="" width={184} />
+      </span>
       <span>
         <b>{p.data.title}</b>
-        <small>{p.data.platform} · {p.data.team}</small>
+        <small>
+          {p.data.platform} · {p.data.team}
+        </small>
         <span class="chips">{p.data.link ? <Chip tone="pub">Open source</Chip> : <Chip>Private code</Chip>}</span>
       </span>
-      <span class="go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 5 7 7-7 7"></path></svg></span>
+      <span class="go" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+          <path d="m9 5 7 7-7 7"></path>
+        </svg>
+      </span>
     </a>
   ))}
 </div>
 
 <style>
-  .plist { display: grid; gap: 10px; align-content: start; }
-  .prow { position: relative; display: grid; grid-template-columns: 92px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 8px 12px 8px 8px; width: 100%; text-align: left; text-decoration: none;
-    background: var(--panel); border-radius: var(--r); box-shadow: 0 0 0 1px var(--line), 0 3px 0 var(--line); transition: box-shadow .12s, translate .12s; }
-  .prow:hover { translate: 0 -1px; box-shadow: 0 0 0 2px color-mix(in srgb, var(--cyan) 60%, transparent), 0 3px 0 var(--line); }
-  .th { width: 92px; height: 68px; border-radius: 6px; overflow: hidden; background: var(--panel-3); }
-  .th img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .prow b { display: block; font-size: 1.05rem; font-weight: 800; }
-  .prow small { display: block; color: var(--ink-2); font-weight: 600; font-size: .82rem; margin-bottom: 4px; }
-  .go { color: var(--ink-2); }
-  .prow[aria-current="page"] { background: linear-gradient(90deg, var(--panel) 40%, var(--cyan-soft)); box-shadow: 0 0 0 2px var(--cyan), 0 3px 0 var(--line); }
-  .prow[aria-current="page"] .go { color: var(--cyan-2); }
-  @container app (min-width: 1024px) { .plist { position: sticky; top: 0; } }
+  .plist {
+    display: grid;
+    gap: 10px;
+    align-content: start;
+  }
+  .prow {
+    position: relative;
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px 8px 8px;
+    width: 100%;
+    text-align: left;
+    text-decoration: none;
+    background: var(--panel);
+    border-radius: var(--r);
+    box-shadow:
+      0 0 0 1px var(--line),
+      0 3px 0 var(--line);
+    transition:
+      box-shadow 0.12s,
+      translate 0.12s;
+  }
+  .prow:hover {
+    translate: 0 -1px;
+    box-shadow:
+      0 0 0 2px color-mix(in srgb, var(--cyan) 60%, transparent),
+      0 3px 0 var(--line);
+  }
+  .th {
+    width: 92px;
+    height: 68px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--panel-3);
+  }
+  .th img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .prow b {
+    display: block;
+    font-size: 1.05rem;
+    font-weight: 800;
+  }
+  .prow small {
+    display: block;
+    color: var(--ink-2);
+    font-weight: 600;
+    font-size: 0.82rem;
+    margin-bottom: 4px;
+  }
+  .go {
+    color: var(--ink-2);
+  }
+  .prow[aria-current="page"] {
+    background: linear-gradient(90deg, var(--panel) 40%, var(--cyan-soft));
+    box-shadow:
+      0 0 0 2px var(--cyan),
+      0 3px 0 var(--line);
+  }
+  .prow[aria-current="page"] .go {
+    color: var(--cyan-2);
+  }
+  @container app (min-width: 1024px) {
+    .plist {
+      position: sticky;
+      top: 0;
+    }
+  }
   @container app (max-width: 639px) {
-    .prow { grid-template-columns: 80px minmax(0, 1fr) auto; }
-    .th { width: 80px; height: 60px; }
+    .prow {
+      grid-template-columns: 80px minmax(0, 1fr) auto;
+    }
+    .th {
+      width: 80px;
+      height: 60px;
+    }
   }
 </style>

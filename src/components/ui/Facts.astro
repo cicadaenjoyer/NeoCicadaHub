@@ -1,8 +1,16 @@
 ---
-interface Props { items: { label: string; value: string }[] }
+interface Props {
+  items: { label: string; value: string }[];
+}
 const { items } = Astro.props;
 ---
+
 <dl class="facts">
-  {items.map((f) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}
+  {items.map((f) => (
+    <div>
+      <dt>{f.label}</dt>
+      <dd>{f.value}</dd>
+    </div>
+  ))}
   <slot />
 </dl>

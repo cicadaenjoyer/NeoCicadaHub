@@ -3,24 +3,40 @@ import type { CollectionEntry } from "astro:content";
 import BannerArt from "./BannerArt.astro";
 import Button from "../ui/Button.astro";
 
-interface Props { projects: CollectionEntry<"projects">[] }
+interface Props {
+  projects: CollectionEntry<"projects">[];
+}
 const { projects } = Astro.props;
 const chev = (d: 1 | -1) => (d > 0 ? "m9 5 7 7-7 7" : "m15 5-7 7 7 7");
 ---
+
 <div class="banner" data-banner>
   <div class="slides">
     {projects.map((p, i) => (
       <a class="slide" href={`/projects/${p.id}/`} data-slide hidden={i > 0} aria-label={`${p.data.title}: ${p.data.line}. View project`}>
         <BannerArt project={p} eager={i === 0} />
         <span class="info">
-          <span><b>{p.data.title}</b><small>{p.data.line}</small></span>
-          <Button variant="y" size="sm" as="span">View project ›</Button>
+          <span>
+            <b>{p.data.title}</b>
+            <small>{p.data.line}</small>
+          </span>
+          <Button variant="y" size="sm" as="span">
+            View project ›
+          </Button>
         </span>
       </a>
     ))}
   </div>
-  <button class="round bnav p" type="button" data-bstep="-1" aria-label="Previous featured project"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d={chev(-1)}></path></svg></button>
-  <button class="round bnav n" type="button" data-bstep="1" aria-label="Next featured project"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d={chev(1)}></path></svg></button>
+  <button class="round bnav p" type="button" data-bstep="-1" aria-label="Previous featured project">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+      <path d={chev(-1)}></path>
+    </svg>
+  </button>
+  <button class="round bnav n" type="button" data-bstep="1" aria-label="Next featured project">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+      <path d={chev(1)}></path>
+    </svg>
+  </button>
   <div class="dots">
     {projects.map((p, i) => (
       <button type="button" data-dot={i} aria-label={`Show ${p.data.title}`} aria-current={i === 0 ? "true" : "false"}></button>
@@ -29,24 +45,95 @@ const chev = (d: 1 | -1) => (d > 0 ? "m9 5 7 7-7 7" : "m15 5-7 7 7 7");
 </div>
 
 <style>
-  .banner { position: relative; }
-  .slides { position: relative; border-radius: 12px; overflow: hidden; background: var(--panel); box-shadow: 0 0 0 3px color-mix(in srgb, var(--panel) 85%, transparent), var(--lift); }
-  .slide { display: grid; grid-template-columns: minmax(0, 1fr); width: 100%; min-width: 0; text-align: left; text-decoration: none; }
-  .slide[hidden] { display: none; }
-  .info { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px 14px 16px; }
-  .info b { display: block; font-size: 1.2rem; font-weight: 800; line-height: 1.2; }
-  .info small { display: block; color: var(--ink-2); font-weight: 600; font-size: .84rem; }
-  .info :global(.btn) { flex: none; }
-  .bnav { position: absolute; top: calc((100% - 70px) / 2); translate: 0 -50%; }
-  .bnav.p { left: 10px; } .bnav.n { right: 10px; }
-  .dots { display: flex; justify-content: center; gap: 6px; padding-top: 2px; }
-  .dots button { width: 28px; height: 18px; display: grid; place-items: center; }
-  .dots button::before { content: ""; width: 18px; height: 5px; border-radius: 3px; background: color-mix(in srgb, var(--navy) 25%, transparent); }
-  .dots button[aria-current="true"]::before { background: var(--cyan-2); width: 26px; }
+  .banner {
+    position: relative;
+  }
+  .slides {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--panel);
+    box-shadow:
+      0 0 0 3px color-mix(in srgb, var(--panel) 85%, transparent),
+      var(--lift);
+  }
+  .slide {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    min-width: 0;
+    text-align: left;
+    text-decoration: none;
+  }
+  .slide[hidden] {
+    display: none;
+  }
+  .info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 14px 14px 16px;
+  }
+  .info b {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+  .info small {
+    display: block;
+    color: var(--ink-2);
+    font-weight: 600;
+    font-size: 0.84rem;
+  }
+  .info :global(.btn) {
+    flex: none;
+  }
+  .bnav {
+    position: absolute;
+    top: calc((100% - 70px) / 2);
+    translate: 0 -50%;
+  }
+  .bnav.p {
+    left: 10px;
+  }
+  .bnav.n {
+    right: 10px;
+  }
+  .dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding-top: 2px;
+  }
+  .dots button {
+    width: 28px;
+    height: 18px;
+    display: grid;
+    place-items: center;
+  }
+  .dots button::before {
+    content: "";
+    width: 18px;
+    height: 5px;
+    border-radius: 3px;
+    background: color-mix(in srgb, var(--navy) 25%, transparent);
+  }
+  .dots button[aria-current="true"]::before {
+    background: var(--cyan-2);
+    width: 26px;
+  }
   @container app (max-width: 639px) {
-    .info { flex-wrap: wrap; }
-    .info :global(.btn) { width: 100%; }
-    .bnav { display: none; }
+    .info {
+      flex-wrap: wrap;
+    }
+    .info :global(.btn) {
+      width: 100%;
+    }
+    .bnav {
+      display: none;
+    }
   }
 </style>
 

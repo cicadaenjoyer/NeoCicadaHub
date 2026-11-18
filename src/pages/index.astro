@@ -12,12 +12,21 @@ const site = (await getEntry("site", "main"))!.data;
 const projects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
 const current = (await getCollection("jobs")).find((j) => j.data.current)!;
 ---
-<AppShell screen="home" title="Home" pageTitle="Abraham Hernandez · Software Developer" description="Portfolio of Abraham Hernandez, a software developer at More Vang: projects, work history and contact.">
+
+<AppShell
+  screen="home"
+  title="Home"
+  pageTitle="Abraham Hernandez · Software Developer"
+  description="Portfolio of Abraham Hernandez, a software developer at More Vang: projects, work history and contact."
+>
   <section class="s-home" aria-label="Home">
     <div class="h-left">
       <div class="portrait hello">
         <Avatar size={128} alt="Abraham's pixel-art avatar" />
-        <div><h1>{site.name}</h1><p>{site.subtitle}</p></div>
+        <div>
+          <h1>{site.name}</h1>
+          <p>{site.subtitle}</p>
+        </div>
       </div>
       <DialogueBox
         name="Abraham"
@@ -37,25 +46,82 @@ const current = (await getCollection("jobs")).find((j) => j.data.current)!;
 </AppShell>
 
 <style>
-  .s-home { display: grid; gap: 18px; grid-template-columns: minmax(0, 1fr); align-content: start; }
-  .h-left { display: grid; gap: 14px; align-content: end; min-width: 0; }
-  .h-right { display: grid; gap: 10px; align-content: start; min-width: 0; }
-  .portrait { display: flex; align-items: flex-end; gap: 14px; }
-  .hello h1 { margin: 0; font-family: var(--f-disp); font-weight: 800; font-style: italic; font-size: 1.9rem; line-height: 1.05; color: var(--navy-3); text-wrap: balance;
-    text-shadow: 0 2px 0 color-mix(in srgb, var(--panel) 80%, transparent); }
-  .hello p { margin: 4px 0 0; font-weight: 700; color: var(--navy-2); }
+  .s-home {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+  }
+  .h-left {
+    display: grid;
+    gap: 14px;
+    align-content: end;
+    min-width: 0;
+  }
+  .h-right {
+    display: grid;
+    gap: 10px;
+    align-content: start;
+    min-width: 0;
+  }
+  .portrait {
+    display: flex;
+    align-items: flex-end;
+    gap: 14px;
+  }
+  .hello h1 {
+    margin: 0;
+    font-family: var(--f-disp);
+    font-weight: 800;
+    font-style: italic;
+    font-size: 1.9rem;
+    line-height: 1.05;
+    color: var(--navy-3);
+    text-wrap: balance;
+    text-shadow: 0 2px 0 color-mix(in srgb, var(--panel) 80%, transparent);
+  }
+  .hello p {
+    margin: 4px 0 0;
+    font-weight: 700;
+    color: var(--navy-2);
+  }
   @container app (min-width: 640px) {
-    .s-home { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: end; min-height: 100%; }
+    .s-home {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: end;
+      min-height: 100%;
+    }
   }
   @container app (min-width: 1024px) {
-    .s-home { grid-template-columns: minmax(0, 1fr) minmax(420px, 560px); gap: 40px; align-content: center; max-width: 1400px; margin: 0 auto; width: 100%; }
-    .h-left { max-width: 680px; }
-    .h-right { align-self: center; }
-    .hello :global(.ring) { width: 160px; height: 160px; }
-    .hello h1 { font-size: 2.6rem; }
+    .s-home {
+      grid-template-columns: minmax(0, 1fr) minmax(420px, 560px);
+      gap: 40px;
+      align-content: center;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .h-left {
+      max-width: 680px;
+    }
+    .h-right {
+      align-self: center;
+    }
+    .hello :global(.ring) {
+      width: 160px;
+      height: 160px;
+    }
+    .hello h1 {
+      font-size: 2.6rem;
+    }
   }
   @container app (max-width: 639px) {
-    .hello :global(.ring) { width: 96px; height: 96px; }
-    .hello h1 { font-size: 1.5rem; }
+    .hello :global(.ring) {
+      width: 96px;
+      height: 96px;
+    }
+    .hello h1 {
+      font-size: 1.5rem;
+    }
   }
 </style>

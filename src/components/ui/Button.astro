@@ -12,10 +12,23 @@ type Props = Omit<HTMLAttributes<"a"> & HTMLAttributes<"button">, "type"> & {
 const { variant = "c", size, href, type = "button", as, class: cls, ...rest } = Astro.props;
 const classes = ["btn", variant !== "c" && variant, size, cls];
 ---
+
 {href ? (
-  <a href={href} class:list={classes} {...rest}><span><slot /></span></a>
+  <a href={href} class:list={classes} {...rest}>
+    <span>
+      <slot />
+    </span>
+  </a>
 ) : variant === "off" || as === "span" ? (
-  <span class:list={classes} aria-disabled={variant === "off" ? "true" : undefined} {...rest}><span><slot /></span></span>
+  <span class:list={classes} aria-disabled={variant === "off" ? "true" : undefined} {...rest}>
+    <span>
+      <slot />
+    </span>
+  </span>
 ) : (
-  <button type={type} class:list={classes} {...rest}><span><slot /></span></button>
+  <button type={type} class:list={classes} {...rest}>
+    <span>
+      <slot />
+    </span>
+  </button>
 )}

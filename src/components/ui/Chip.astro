@@ -1,5 +1,10 @@
 ---
-interface Props { tone?: "now" | "pub" }
+interface Props {
+  tone?: "now" | "pub";
+}
 const { tone } = Astro.props;
 ---
-<span class:list={["chip", tone]}><slot /></span>
+
+<span class:list={["chip", tone]}>
+  <slot />
+</span>

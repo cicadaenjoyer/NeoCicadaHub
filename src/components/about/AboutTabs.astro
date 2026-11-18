@@ -2,34 +2,85 @@
 import { Content as Bio } from "../../content/bio.md";
 import SkillGrid from "./SkillGrid.astro";
 ---
+
 <!-- Both panes are visible in the HTML so the page works without JavaScript; the tabs script hides the inactive one. -->
 <div class="tabsw" data-tabs>
   <div class="tabs" role="tablist" aria-label="About sections">
-    <button type="button" role="tab" id="tab-bio" aria-selected="true" aria-controls="pane-bio" tabindex="0"><span>Bio</span></button>
-    <button type="button" role="tab" id="tab-skills" aria-selected="false" aria-controls="pane-skills" tabindex="-1"><span>Skills</span></button>
+    <button type="button" role="tab" id="tab-bio" aria-selected="true" aria-controls="pane-bio" tabindex="0">
+      <span>Bio</span>
+    </button>
+    <button type="button" role="tab" id="tab-skills" aria-selected="false" aria-controls="pane-skills" tabindex="-1">
+      <span>Skills</span>
+    </button>
   </div>
   <div class="panel pane bio" role="tabpanel" id="pane-bio" aria-labelledby="tab-bio">
     <span class="deco" aria-hidden="true"></span>
-    <h2><span class="hl">A little about me</span></h2>
+    <h2>
+      <span class="hl">A little about me</span>
+    </h2>
     <Bio />
   </div>
   <div class="panel pane" role="tabpanel" id="pane-skills" aria-labelledby="tab-skills">
-    <h2><span class="hl">Languages &amp; tools</span></h2>
+    <h2>
+      <span class="hl">Languages &amp; tools</span>
+    </h2>
     <SkillGrid />
   </div>
 </div>
 
 <style>
-  .tabsw { display: grid; gap: 14px; align-content: start; min-width: 0; }
-  .tabs { display: flex; gap: 6px; flex-wrap: wrap; }
-  .tabs button { min-height: 40px; padding: 6px 20px; border-radius: 6px; font-weight: 800; transform: skewX(-10deg); background: var(--panel-3); color: var(--slate); box-shadow: 0 2px 0 var(--line); }
-  .tabs button > span { display: inline-block; transform: skewX(10deg); }
-  .tabs button:hover { color: var(--navy-2); }
-  .tabs button[aria-selected="true"] { background: var(--navy-2); color: var(--panel); box-shadow: 0 2px 0 var(--navy-3); }
-  .pane { position: relative; padding: 18px; }
-  .pane[hidden] { display: none; }
-  .pane h2 { margin: 0 0 12px; font-family: var(--f-disp); font-style: italic; font-weight: 800; font-size: 1.35rem; }
-  .bio :global(p) { margin: 0 0 12px; line-height: 1.7; max-width: 68ch; }
+  .tabsw {
+    display: grid;
+    gap: 14px;
+    align-content: start;
+    min-width: 0;
+  }
+  .tabs {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .tabs button {
+    min-height: 40px;
+    padding: 6px 20px;
+    border-radius: 6px;
+    font-weight: 800;
+    transform: skewX(-10deg);
+    background: var(--panel-3);
+    color: var(--slate);
+    box-shadow: 0 2px 0 var(--line);
+  }
+  .tabs button > span {
+    display: inline-block;
+    transform: skewX(10deg);
+  }
+  .tabs button:hover {
+    color: var(--navy-2);
+  }
+  .tabs button[aria-selected="true"] {
+    background: var(--navy-2);
+    color: var(--panel);
+    box-shadow: 0 2px 0 var(--navy-3);
+  }
+  .pane {
+    position: relative;
+    padding: 18px;
+  }
+  .pane[hidden] {
+    display: none;
+  }
+  .pane h2 {
+    margin: 0 0 12px;
+    font-family: var(--f-disp);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 1.35rem;
+  }
+  .bio :global(p) {
+    margin: 0 0 12px;
+    line-height: 1.7;
+    max-width: 68ch;
+  }
 </style>
 
 <script>
@@ -47,7 +98,13 @@ import SkillGrid from "./SkillGrid.astro";
       });
       if (focus) tabs[i]!.focus();
     };
-    select(Math.max(0, tabs.findIndex((t) => t.getAttribute("aria-selected") === "true")), false);
+    select(
+      Math.max(
+        0,
+        tabs.findIndex((t) => t.getAttribute("aria-selected") === "true"),
+      ),
+      false,
+    );
 
     const list = root.querySelector<HTMLElement>('[role="tablist"]')!;
     list.addEventListener("click", (e) => {
