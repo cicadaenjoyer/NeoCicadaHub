@@ -1,0 +1,23 @@
+---
+const choices = [
+  { href: "/projects/", label: "Show me your projects" },
+  { href: "/work/", label: "Where have you worked?" },
+  { href: "/contact/", label: "How can I reach you?" },
+];
+---
+<nav class="choices" aria-label="Where to next?">
+  {choices.map((c) => (
+    <a class="choice" href={c.href}>
+      {c.label}
+      <span class="arr" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4"><path d="m9 5 7 7-7 7"></path></svg></span>
+    </a>
+  ))}
+</nav>
+
+<style>
+  .choices { display: grid; gap: 8px; }
+  .choice { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 48px; padding: 10px 18px; border-radius: 24px; text-align: left; font-weight: 700;
+    text-decoration: none; background: var(--panel); box-shadow: 0 0 0 1px var(--line), 0 3px 0 var(--line); transition: box-shadow .12s, translate .12s; }
+  .arr { flex: none; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--cyan); color: var(--panel); }
+  .choice:hover { box-shadow: 0 0 0 2px var(--cyan), 0 3px 0 var(--line); translate: 0 -1px; }
+</style>

@@ -1,0 +1,30 @@
+---
+interface Props {
+  name: string;
+  role: string;
+  greeting: string;
+  taglines: string[];
+}
+const { name, role, greeting, taglines } = Astro.props;
+---
+<div class="dlg">
+  <div class="dlg-name"><b>{name}</b><span>{role}</span></div>
+  <p>{greeting}</p>
+  <p class="tag" data-typewriter data-lines={JSON.stringify(taglines)}>{taglines[0]}</p>
+  <p class="sr" aria-live="polite" data-typewriter-live></p>
+  <span class="next" aria-hidden="true"></span>
+</div>
+
+<style>
+  .dlg { position: relative; border-radius: 10px; padding: 14px 18px 18px; color: var(--panel);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--navy-3) 80%, transparent), color-mix(in srgb, var(--navy-3) 92%, transparent));
+    box-shadow: 0 10px 24px -12px color-mix(in srgb, var(--navy-3) 80%, transparent); backdrop-filter: blur(4px); }
+  .dlg-name { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; padding-bottom: 8px; margin-bottom: 10px; border-bottom: 1px solid color-mix(in srgb, var(--panel) 35%, transparent); }
+  .dlg-name b { font-size: 1.15rem; font-weight: 800; }
+  .dlg-name span { color: #8fd6ff; font-weight: 600; font-size: .85rem; }
+  .dlg p { margin: 0 0 6px; font-size: 1rem; line-height: 1.6; max-width: 60ch; }
+  .dlg .tag { color: #cfe8ff; min-height: 1.6em; }
+  .dlg .sr { margin: 0; }
+  .next { position: absolute; right: 14px; bottom: 8px; width: 0; height: 0; border: 7px solid transparent; border-top: 9px solid #8fd6ff; animation: bob 1s ease-in-out infinite; }
+  @keyframes bob { 50% { translate: 0 3px; } }
+</style>

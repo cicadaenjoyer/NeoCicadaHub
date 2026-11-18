@@ -1,0 +1,34 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+interface Props { project: CollectionEntry<"projects">; eager?: boolean }
+const { project, eager = false } = Astro.props;
+const { featured, tone, thumb, images } = project.data;
+const loading = eager ? "eager" : "lazy";
+// Tabi's composition: app icon plus three phone screenshots (dashboard, kanji page, kanji reading).
+const phones = featured.art === "tabi" ? [images[0], images[1], images[3]].filter(Boolean) : [];
+---
+{featured.art === "tabi" ? (
+  <span class="art tabi">
+    <Image class="icon" src={thumb} alt="" width={160} loading={loading} />
+    <span class="phones">
+      {phones.map((p) => <Image src={p!.src} alt="" width={240} loading={loading} />)}
+    </span>
+  </span>
+) : (
+  <span class:list={["art", tone === "navy" ? "navy" : "dark"]}>
+    {featured.shot && <Image class="shot" src={featured.shot} alt="" width={800} loading={loading} />}
+  </span>
+)}
+
+<style>
+  .art { position: relative; aspect-ratio: 16 / 9; width: 100%; max-width: 100%; min-width: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; gap: 3%; padding: 5% 6%; }
+  .art.tabi { background: linear-gradient(135deg, #ff4fae, #c03cf0 60%, #7a5cff); justify-content: flex-start; }
+  .art.tabi .icon { height: 46%; width: auto; aspect-ratio: 1; border-radius: 22%; box-shadow: 0 8px 18px -6px rgba(40, 0, 60, .55); flex: none; }
+  .phones { display: flex; justify-content: flex-end; gap: 3%; height: 100%; min-width: 0; margin-left: auto; }
+  .phones img { height: 100%; width: auto; border-radius: 8px; box-shadow: 0 0 0 3px #fff, 0 10px 20px -8px rgba(40, 0, 60, .6); background: #fff; }
+  .art.dark { background: radial-gradient(120% 90% at 50% 0%, #3a2140, #170d1b); }
+  .art.navy { background: radial-gradient(120% 90% at 50% 0%, #26324a, #111827); }
+  .shot { max-height: 100%; max-width: 100%; width: auto; height: auto; border-radius: 6px; box-shadow: 0 12px 26px -10px rgba(0, 0, 0, .7); }
+</style>
