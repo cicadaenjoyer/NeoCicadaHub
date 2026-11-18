@@ -1,13 +1,31 @@
 [
   {
     "id": "more-vang",
-    "title": "Software Programmer",
+    "title": "Software Engineer",
     "org": "More Vang",
     "logo": "../assets/logos/morevang.png",
     "current": true,
     "order": 1,
-    "tools": ["Laravel", "PDFKit", "JavaScript", "Python", "Chart.js", "Accessibility"],
-    "desc": "Engineered core Laravel features including page redirection, image uploads, and automated PDF workflows using PDFKit, JavaScript and Python. Built accessibility features for the PDF rendering engine so documents have a logical structure for visually impaired readers, and integrated Chart.js for dynamic charts in PDF templates."
+    "tools": ["Next.js", "React", "Vue", "TypeScript", "Python", "JavaScript", "PHP", "Laravel", "GitLab CI"],
+    "desc": "I build the tools that turn client data into print-ready PDFs, from a browser-based template editor to the Python engine that renders it.",
+    "highlights": [
+      {
+        "title": "Tech lead, Template Builder",
+        "body": "A drag-and-drop editor, like a simple Canva, where university clients design their own report templates and get an exact PDF back. I lead development in Next.js, React and TypeScript, having written most of its ~48k lines and 140 test files, and I am now steering its move onto banjo.py so what you design is exactly what prints."
+      },
+      {
+        "title": "Contributor, banjo.py",
+        "body": "banjo.py turns HTML into print-ready PDFs and will power Template Builder. In Python, I made it safe to run templates that clients write: a sandboxed Jinja2, file reads confined to the template folder, and an allowlist for the sites a template can load from."
+      },
+      {
+        "title": "Template Wiki, Mythos",
+        "body": "Mythos is our Laravel platform for client reports. I built its Template Wiki, which turns each template’s Markdown docs into a searchable admin wiki that links template rule references automatically and notifies subscribers when a new template update has been released."
+      },
+      {
+        "title": "Tech Lead, Site Mailer project",
+        "body": "Site Mailer turns a donor’s online financial report into a personalised printed mailer with a QR code to their own page. I lead the project to make it repeatable for every client: planning epics and sprints, porting the legacy PHP data processors to JavaScript, and shipping the first campaign, a university donor tri-fold, to print."
+      }
+    ]
   },
   {
     "id": "id-tech",
