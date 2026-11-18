@@ -2,7 +2,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@500;700;800&family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap">
 <style>
 /* Layout: an app shell (top bar / scrolling screen / bottom menu) that lays itself out by its own width with container queries,
    shown inside a switchable device frame for review. Home is the game's lobby: sky backdrop, story dialogue box with choice
@@ -17,9 +17,8 @@
   --yellow: #ffe45e; --yellow-hi: #fff4a8; --yellow-2: #e9b915; --highlight: #fff27a;
   --pink: #fb8ea1; --pink-2: #f0718a; --good: #23a35a;
   --chrome-bg: #d7dde3; --chrome-ink: #24303c; --bezel: #1a2330;
-  --f-body: "Noto Sans", "M PLUS 1p", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Noto Sans", "Segoe UI", system-ui, sans-serif;
   --f-disp: "Noto Sans", "Segoe UI", system-ui, sans-serif;
-  --f-jp: "M PLUS 1p", "Hiragino Sans", "Yu Gothic", sans-serif;
   --r: 8px;
   --lift: 0 1px 0 color-mix(in srgb, var(--navy) 14%, transparent), 0 8px 22px -14px color-mix(in srgb, var(--navy) 60%, transparent);
 }
@@ -62,24 +61,17 @@ img { max-width: 100%; }
 .bg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .app > :not(.bg, .modal) { position: relative; z-index: 1; }
 
-/* Top bar: flat white strip. Left: who / back + screen title. Right: link capsules styled like the game's resource counters. */
+/* Top bar: flat white strip. Left: back button (hidden on Home) + screen title. Right: link capsules styled like the game's resource counters. */
 .top { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 64px; padding: 8px 14px;
   background: color-mix(in srgb, var(--panel) 95%, transparent); box-shadow: 0 2px 10px -3px color-mix(in srgb, var(--navy) 28%, transparent); z-index: 5; }
 .tl { display: flex; align-items: center; gap: 12px; min-width: 0; }
-.me { display: flex; align-items: center; gap: 10px; min-width: 0; }
-.me .av { width: 44px; height: 44px; border-radius: 50%; overflow: hidden; flex: none; background: #b8bcc5; box-shadow: 0 0 0 2px var(--panel), 0 0 0 4px var(--navy-2); }
-.me .av img { width: 100%; height: 100%; display: block; }
-.me b { display: block; font-weight: 800; font-size: 1.05rem; line-height: 1.15; white-space: nowrap; }
-.me small { display: block; color: var(--ink-2); font-weight: 600; font-size: .78rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .back { width: 48px; height: 48px; flex: none; border-radius: 50%; display: grid; place-items: center; background: var(--navy-2); color: var(--panel);
   box-shadow: 0 3px 0 var(--navy-3), 0 6px 12px -4px color-mix(in srgb, var(--navy) 60%, transparent); }
 .back:hover { background: var(--navy); }
 .back:active { translate: 0 2px; box-shadow: 0 1px 0 var(--navy-3); }
 .ttl { display: flex; align-items: baseline; gap: 10px; min-width: 0; }
 .ttl h2 { margin: 0; font-family: var(--f-disp); font-size: 1.6rem; font-style: italic; font-weight: 800; letter-spacing: -.01em; white-space: nowrap; }
-.ttl .jp { font-family: var(--f-jp); font-size: .8rem; color: var(--ink-2); white-space: nowrap; font-weight: 500; }
-.app[data-screen="home"] .back, .app[data-screen="home"] .ttl { display: none; }
-.app:not([data-screen="home"]) .me { display: none; }
+.app[data-screen="home"] .back { display: none; }
 
 .caps { display: flex; align-items: center; gap: 4px; }
 .cap { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px 0 5px; border-radius: 20px; text-decoration: none; font-weight: 700; font-size: .88rem;
@@ -245,7 +237,6 @@ img { max-width: 100%; }
 .s-about { gap: 16px; grid-template-columns: minmax(0, 1fr); align-items: start; }
 .idc { overflow: hidden; }
 .idc .band { display: flex; justify-content: space-between; align-items: center; padding: 8px 14px; background: var(--navy-2); color: var(--panel); font-weight: 800; font-style: italic; letter-spacing: .04em; font-size: .8rem; }
-.idc .band span:last-child { font-family: var(--f-jp); font-style: normal; font-weight: 500; opacity: .8; }
 .idc .pic { display: grid; place-items: center; padding: 18px 0 12px; background: linear-gradient(180deg, var(--sky-2), var(--panel)); }
 .idc .pic .ring { width: 160px; height: 160px; }
 .idc .who { text-align: center; padding: 4px 14px 12px; }
@@ -329,7 +320,6 @@ a.opt:hover { box-shadow: 0 0 0 2px var(--cyan), 0 2px 0 var(--line); }
 @container app (max-width: 639px) {
   .top { min-height: 58px; padding: 6px 10px; }
   .ttl h2 { font-size: 1.3rem; }
-  .ttl .jp { display: none; }
   .back { width: 42px; height: 42px; }
   .cap { padding: 0; width: 40px; justify-content: center; }
   .cap .lbl, .cap .ext { display: none; }
@@ -373,12 +363,8 @@ a.opt:hover { box-shadow: 0 0 0 2px var(--cyan), 0 2px 0 var(--line); }
 
     <header class="top">
       <div class="tl">
-        <div class="me">
-          <span class="av"><img class="px" src="assets/avatar-32.png" alt=""></span>
-          <span><b>Abraham Hernandez</b><small>Software Developer</small></span>
-        </div>
         <button class="back" type="button" id="backBtn" aria-label="Back" title="Back"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12H5M11 5l-7 7 7 7"/></svg></button>
-        <div class="ttl"><h2 id="screenTitle">Projects</h2><span class="jp" id="screenJp">制作</span></div>
+        <div class="ttl"><h2 id="screenTitle">Projects</h2></div>
       </div>
       <div class="caps">
         <a class="cap" href="https://github.com/cicadaenjoyer" target="_blank" rel="noopener" aria-label="GitHub (opens in a new tab)">
@@ -443,7 +429,7 @@ a.opt:hover { box-shadow: 0 0 0 2px var(--cyan), 0 2px 0 var(--line); }
       <!-- ABOUT -->
       <section class="scr s-about wrap" aria-label="About">
         <div class="panel idc">
-          <div class="band"><span>PROFILE</span><span>プロフィール</span></div>
+          <div class="band"><span>PROFILE</span></div>
           <div class="pic"><span class="ring"><img class="px" src="assets/avatar-32.png" alt="Abraham's pixel-art avatar"></span></div>
           <div class="who"><b>Abraham Hernandez</b><small>Software Developer · More Vang</small></div>
           <dl class="facts">
@@ -574,13 +560,13 @@ a.opt:hover { box-shadow: 0 0 0 2px var(--cyan), 0 2px 0 var(--line); }
 
   /* ── navigation: hash routes, bottom menu, back button ── */
   const app = $("#app"), view = $("#view");
-  const titles = { home: ["Home", "ロビー"], projects: ["Projects", "制作"], work: ["Work", "職歴"], about: ["About", "プロフィール"], contact: ["Contact", "連絡"] };
+  const titles = { home: "Home", projects: "Projects", work: "Work", about: "About", contact: "Contact" };
   const screens = Object.keys(titles);
   let depth = 0;
   function show(s) {
     if (!screens.includes(s)) s = "home";
     app.dataset.screen = s;
-    $("#screenTitle").textContent = titles[s][0]; $("#screenJp").textContent = titles[s][1];
+    $("#screenTitle").textContent = titles[s];
     $$(".dock a").forEach((a) => a.dataset.nav === s ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));
     view.scrollTop = 0; drawBg(); closeModal(true);
   }
