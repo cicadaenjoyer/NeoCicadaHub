@@ -1,0 +1,14 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import AppShell from "../../layouts/AppShell.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({ params: { slug: project.id }, props: { project } }));
+}
+interface Props { project: CollectionEntry<"projects"> }
+const { project } = Astro.props;
+---
+<AppShell screen="projects" title="Projects" pageTitle={`${project.data.title} · Abraham Hernandez`} description={project.data.line}>
+  <div class="wrap"></div>
+</AppShell>

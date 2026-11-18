@@ -1,0 +1,61 @@
+---
+import { ClientRouter } from "astro:transitions";
+import "@fontsource/noto-sans/400.css";
+import "@fontsource/noto-sans/500.css";
+import "@fontsource/noto-sans/600.css";
+import "@fontsource/noto-sans/700.css";
+import "@fontsource/noto-sans/800.css";
+import "@fontsource/noto-sans/700-italic.css";
+import "@fontsource/noto-sans/800-italic.css";
+import "../styles/tokens.css";
+import "../styles/global.css";
+import "../styles/ui.css";
+import Backdrop from "../components/shell/Backdrop.astro";
+import TopBar from "../components/shell/TopBar.astro";
+import Dock from "../components/shell/Dock.astro";
+
+export type Screen = "home" | "projects" | "work" | "about" | "contact" | "notfound";
+
+interface Props {
+  screen: Screen;
+  title: string;
+  pageTitle: string;
+  description: string;
+  canonical?: string;
+}
+const { screen, title, pageTitle, description, canonical } = Astro.props;
+
+// The mockup's screen slide-in, played on the incoming <main>.
+const enter = {
+  forwards: {
+    old: { name: "astroFadeOut", duration: ".12s", easing: "ease-in", fillMode: "both" },
+    new: { name: "enter", duration: ".28s", easing: "ease-out", fillMode: "backwards" },
+  },
+  backwards: {
+    old: { name: "astroFadeOut", duration: ".12s", easing: "ease-in", fillMode: "both" },
+    new: { name: "enter", duration: ".28s", easing: "ease-out", fillMode: "backwards" },
+  },
+};
+---
+<html lang="en" data-screen={screen}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={new URL(canonical, Astro.site)} />}
+    <link rel="icon" href="/favicon.ico" />
+    <ClientRouter />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="app">
+      <Backdrop />
+      <TopBar screen={screen} title={title} />
+      <main id="main" class="view" transition:animate={enter}>
+        <slot />
+      </main>
+      <Dock />
+    </div>
+  </body>
+</html>

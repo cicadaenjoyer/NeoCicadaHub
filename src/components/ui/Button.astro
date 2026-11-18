@@ -1,0 +1,21 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = Omit<HTMLAttributes<"a"> & HTMLAttributes<"button">, "type"> & {
+  variant?: "c" | "y" | "w" | "off";
+  size?: "sm";
+  href?: string;
+  type?: "button" | "submit";
+  /** Render a non-interactive span (for a button look inside an existing link). */
+  as?: "span";
+};
+const { variant = "c", size, href, type = "button", as, class: cls, ...rest } = Astro.props;
+const classes = ["btn", variant !== "c" && variant, size, cls];
+---
+{href ? (
+  <a href={href} class:list={classes} {...rest}><span><slot /></span></a>
+) : variant === "off" || as === "span" ? (
+  <span class:list={classes} aria-disabled={variant === "off" ? "true" : undefined} {...rest}><span><slot /></span></span>
+) : (
+  <button type={type} class:list={classes} {...rest}><span><slot /></span></button>
+)}

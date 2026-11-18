@@ -1,0 +1,38 @@
+/* Shared primitives used across screens (ported from the v5 mockup). */
+.panel { background: var(--panel); border-radius: var(--r); box-shadow: var(--lift); }
+.deco { position: absolute; top: 8px; right: 12px; font-size: .62rem; letter-spacing: .3em; color: color-mix(in srgb, var(--ink-2) 55%, transparent); pointer-events: none; }
+.sbar { display: inline-block; padding: 4px 26px 4px 12px; background: var(--slate); color: var(--panel); font-weight: 700; font-size: .82rem; letter-spacing: .02em;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%); width: fit-content; }
+.hl { background: linear-gradient(transparent 60%, var(--highlight) 60% 92%, transparent 92%); padding: 0 3px; }
+.btn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 8px 26px; border-radius: 6px;
+  font-weight: 800; font-size: .95rem; text-decoration: none; color: var(--navy-2); transform: skewX(-10deg); overflow: hidden; white-space: nowrap;
+  background: linear-gradient(180deg, var(--btn-c1), var(--btn-c2)); box-shadow: 0 3px 0 var(--cyan-2), 0 6px 12px -6px color-mix(in srgb, var(--navy) 60%, transparent); transition: filter .12s, translate .12s; }
+.btn::after { content: ""; position: absolute; inset: 0 0 0 auto; width: 46%; pointer-events: none;
+  background: linear-gradient(120deg, transparent 40%, color-mix(in srgb, var(--panel) 30%, transparent) 40% 54%, transparent 54% 66%, color-mix(in srgb, var(--panel) 20%, transparent) 66% 74%, transparent 74%); }
+.btn > * { position: relative; z-index: 1; transform: skewX(10deg); }
+.btn.y { background: linear-gradient(180deg, var(--yellow-hi), var(--yellow)); box-shadow: 0 3px 0 var(--yellow-2), 0 6px 12px -6px color-mix(in srgb, var(--navy) 60%, transparent); }
+.btn.w { background: var(--panel); box-shadow: 0 3px 0 var(--line), 0 0 0 1px var(--line); }
+.btn.off { background: var(--panel-3); color: var(--ink-2); box-shadow: 0 3px 0 var(--line); cursor: not-allowed; }
+.btn.off::after { display: none; }
+.btn:not(.off):hover { filter: brightness(1.05); translate: 0 -1px; }
+.btn:not(.off):active { translate: 0 2px; box-shadow: 0 1px 0 var(--cyan-2); }
+.btn.sm { min-height: 36px; padding: 4px 16px; font-size: .84rem; }
+.chip { display: inline-flex; align-items: center; padding: 2px 9px; border-radius: 4px; font-size: .76rem; font-weight: 700; background: var(--panel-3); color: var(--slate); white-space: nowrap; }
+.chip.now { background: var(--cyan); color: var(--panel); }
+.chip.pub { background: color-mix(in srgb, var(--good) 14%, var(--panel)); color: var(--good); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.round { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--panel); color: var(--navy-2);
+  box-shadow: 0 2px 0 var(--line), 0 4px 10px -4px color-mix(in srgb, var(--navy) 50%, transparent); }
+.round:hover { color: var(--cyan-2); }
+.ring { width: 128px; height: 128px; border-radius: 50%; overflow: hidden; flex: none; background: #b8bcc5;
+  box-shadow: 0 0 0 4px var(--panel), 0 0 0 7px var(--navy-2), 0 10px 20px -6px color-mix(in srgb, var(--navy) 60%, transparent); }
+.ring img, .av img { width: 100%; height: 100%; display: block; }
+.av { width: 44px; height: 44px; border-radius: 50%; overflow: hidden; flex: none; background: #b8bcc5; }
+.logo { width: 56px; height: 56px; border-radius: 8px; background: var(--panel); box-shadow: inset 0 0 0 1px var(--line); display: grid; place-items: center; padding: 6px; flex: none; }
+.logo img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; }
+.facts { margin: 0; display: grid; border-radius: 6px; overflow: hidden; box-shadow: 0 0 0 1px var(--line); }
+.facts > div { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 10px; padding: 9px 12px; background: var(--panel-2); }
+.facts > div:nth-child(even) { background: var(--panel); }
+.facts dt { color: var(--ink-2); font-weight: 700; font-size: .82rem; }
+.facts dd { margin: 0; font-weight: 700; min-width: 0; }
+@container app (max-width: 639px) { .facts > div { grid-template-columns: 78px minmax(0, 1fr); } }

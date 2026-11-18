@@ -1,0 +1,10 @@
+---
+// Pixel art: served as-is (never through <Image>, which would resample and blur it).
+import avatar from "../../assets/avatar-32.png";
+
+interface Props { size: 44 | 96 | 128 | 160; alt?: string }
+const { size, alt = "" } = Astro.props;
+---
+<span class={size === 44 ? "av" : "ring"}>
+  <img class="px" src={avatar.src} width={size} height={size} alt={alt} decoding="async" />
+</span>
