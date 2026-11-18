@@ -1,5 +1,6 @@
 /* Shared primitives used across screens (ported from the v5 mockup). */
 .panel { background: var(--panel); border-radius: var(--r); box-shadow: var(--lift); }
+.deco::before { content: "△×+○"; }
 .deco { position: absolute; top: 8px; right: 12px; font-size: .62rem; letter-spacing: .3em; color: color-mix(in srgb, var(--ink-2) 55%, transparent); pointer-events: none; }
 .sbar { display: inline-block; padding: 4px 26px 4px 12px; background: var(--slate); color: var(--panel); font-weight: 700; font-size: .82rem; letter-spacing: .02em;
   clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%); width: fit-content; }
@@ -18,8 +19,8 @@
 .btn:not(.off):active { translate: 0 2px; box-shadow: 0 1px 0 var(--cyan-2); }
 .btn.sm { min-height: 36px; padding: 4px 16px; font-size: .84rem; }
 .chip { display: inline-flex; align-items: center; padding: 2px 9px; border-radius: 4px; font-size: .76rem; font-weight: 700; background: var(--panel-3); color: var(--slate); white-space: nowrap; }
-.chip.now { background: var(--cyan); color: var(--panel); }
-.chip.pub { background: color-mix(in srgb, var(--good) 14%, var(--panel)); color: var(--good); }
+.chip.now { background: var(--cyan); color: var(--navy-3); }
+.chip.pub { background: color-mix(in srgb, var(--good) 14%, var(--panel)); color: color-mix(in srgb, var(--good) 68%, #000); }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .round { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--panel); color: var(--navy-2);
   box-shadow: 0 2px 0 var(--line), 0 4px 10px -4px color-mix(in srgb, var(--navy) 50%, transparent); }
