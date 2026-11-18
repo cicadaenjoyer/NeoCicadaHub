@@ -1,0 +1,87 @@
+---
+import { getImage } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  title: string;
+  tone: "light" | "dark" | "navy";
+  images: { src: ImageMetadata; caption: string; video?: { mp4: string; webm: string } }[];
+}
+const { title, tone, images } = Astro.props;
+
+const items = await Promise.all(
+  images.map(async (im) => {
+    const full = await getImage({ src: im.src, width: Math.min(im.src.width, 1200), format: "webp" });
+    const thumb = await getImage({ src: im.src, width: 128, format: "webp" });
+    return { ...im, full, thumb: thumb.src, alt: `${title}: ${im.caption}` };
+  }),
+);
+const first = items[0]!;
+const many = items.length > 1;
+const chev = (d: 1 | -1) => (d > 0 ? "m9 5 7 7-7 7" : "m15 5-7 7 7 7");
+---
+<figure class="gal" data-gallery>
+  <div
+    class="gstage"
+    data-tone={tone}
+    data-stage
+    tabindex={many ? 0 : undefined}
+    role={many ? "group" : undefined}
+    aria-label={many ? `${title} screenshots` : undefined}
+  >
+    {first.video ? (
+      <video autoplay muted loop playsinline poster={first.full.src} aria-label={first.alt}>
+        <source src={first.video.webm} type="video/webm" />
+        <source src={first.video.mp4} type="video/mp4" />
+      </video>
+    ) : (
+      <img src={first.full.src} alt={first.alt} width={first.full.attributes.width} height={first.full.attributes.height} />
+    )}
+    {many && (
+      <>
+        <button class="round p" type="button" data-gstep="-1" aria-label="Previous image"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d={chev(-1)}></path></svg></button>
+        <button class="round n" type="button" data-gstep="1" aria-label="Next image"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d={chev(1)}></path></svg></button>
+      </>
+    )}
+    <span class="gcount">1 / {items.length}</span>
+  </div>
+  <figcaption class="gcap">{first.caption}</figcaption>
+  {many && (
+    <div class="thumbs">
+      {items.map((it, i) => (
+        <button
+          type="button"
+          data-img={i}
+          aria-label={`Show image ${i + 1}`}
+          aria-current={i === 0 ? "true" : "false"}
+          data-full={it.full.src}
+          data-alt={it.alt}
+          data-caption={it.caption}
+          data-mp4={it.video?.mp4}
+          data-webm={it.video?.webm}
+        >
+          <img src={it.thumb} alt="" loading="lazy" />
+        </button>
+      ))}
+    </div>
+  )}
+</figure>
+
+<style>
+  .gal { display: grid; gap: 8px; margin: 0; }
+  .gstage { position: relative; height: clamp(260px, 36cqi, 460px); border-radius: 8px; overflow: hidden; display: grid; grid-template: minmax(0, 1fr) / minmax(0, 1fr); place-items: center; padding: 14px;
+    background: linear-gradient(160deg, var(--panel-3), var(--sky-2)); }
+  .gstage[data-tone="dark"] { background: radial-gradient(120% 100% at 50% 0%, #3a2140, #170d1b); }
+  .gstage[data-tone="navy"] { background: radial-gradient(120% 100% at 50% 0%, #26324a, #111827); }
+  .gstage img, .gstage video { max-width: 100%; max-height: 100%; width: auto; height: auto; display: block; border-radius: 6px; box-shadow: 0 10px 24px -10px rgba(0, 0, 0, .55); }
+  .gstage .round { position: absolute; top: 50%; translate: 0 -50%; }
+  .gstage .p { left: 10px; } .gstage .n { right: 10px; }
+  .gcount { position: absolute; right: 10px; bottom: 10px; padding: 1px 9px; border-radius: 10px; font-size: .76rem; font-weight: 700; color: var(--panel);
+    background: color-mix(in srgb, var(--navy-3) 75%, transparent); font-variant-numeric: tabular-nums; }
+  .gcap { margin: 0; font-size: .86rem; color: var(--ink-2); font-weight: 600; }
+  .thumbs { display: flex; gap: 8px; overflow-x: auto; padding: 3px; }
+  .thumbs button { flex: none; width: 64px; height: 48px; border-radius: 5px; overflow: hidden; box-shadow: 0 0 0 1px var(--line); opacity: .7; background: var(--panel-3); }
+  .thumbs button img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .thumbs button[aria-current="true"] { opacity: 1; box-shadow: 0 0 0 3px var(--cyan); }
+  @container app (max-width: 639px) { .gstage { height: 300px; } }
+</style>

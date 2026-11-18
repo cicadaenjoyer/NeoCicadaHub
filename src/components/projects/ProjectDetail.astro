@@ -1,0 +1,43 @@
+---
+import { render, type CollectionEntry } from "astro:content";
+import Gallery from "./Gallery.astro";
+import Facts from "../ui/Facts.astro";
+import Chip from "../ui/Chip.astro";
+import Button from "../ui/Button.astro";
+
+interface Props { project: CollectionEntry<"projects"> }
+const { project } = Astro.props;
+const p = project.data;
+const { Content } = await render(project);
+---
+<article class="panel pd" id="detail">
+  <span class="deco" aria-hidden="true">△×+○</span>
+  <div class="pd-head">
+    <h2><span class="hl">{p.title}</span></h2>
+    <p>{p.line}</p>
+  </div>
+  <Gallery title={p.title} tone={p.tone} images={p.images} />
+  <Facts items={[{ label: "Platform", value: p.platform }, { label: "Team", value: p.team }]}>
+    <div><dt>Built with</dt><dd><span class="chips">{p.stack.map((s) => <Chip>{s}</Chip>)}</span></dd></div>
+  </Facts>
+  <div class="desc"><Content /></div>
+  <div class="acts">
+    {p.link ? (
+      <Button variant="y" href={p.link} target="_blank" rel="noopener" aria-label={`View ${p.title} code on GitHub (opens in a new tab)`}>View code on GitHub ↗</Button>
+    ) : (
+      <>
+        <Button variant="off">Code is private</Button>
+        <span class="note">This was a class project, so the repository isn't public.</span>
+      </>
+    )}
+  </div>
+</article>
+
+<style>
+  .pd { position: relative; padding: 18px; display: grid; gap: 14px; min-width: 0; scroll-margin-top: 8px; }
+  .pd-head h2 { margin: 0; font-family: var(--f-disp); font-style: italic; font-weight: 800; font-size: 1.7rem; line-height: 1.15; }
+  .pd-head p { margin: 4px 0 0; color: var(--ink-2); font-weight: 600; }
+  .desc :global(p) { margin: 0; line-height: 1.7; max-width: 70ch; }
+  .acts { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+  .note { color: var(--ink-2); font-size: .86rem; font-weight: 600; }
+</style>

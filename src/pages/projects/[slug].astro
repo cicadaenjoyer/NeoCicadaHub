@@ -1,14 +1,15 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
 import AppShell from "../../layouts/AppShell.astro";
+import ProjectsView from "../../components/projects/ProjectsView.astro";
 
 export async function getStaticPaths() {
-  const projects = await getCollection("projects");
-  return projects.map((project) => ({ params: { slug: project.id }, props: { project } }));
+  const projects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
+  return projects.map((project) => ({ params: { slug: project.id }, props: { project, projects } }));
 }
-interface Props { project: CollectionEntry<"projects"> }
-const { project } = Astro.props;
+interface Props { project: CollectionEntry<"projects">; projects: CollectionEntry<"projects">[] }
+const { project, projects } = Astro.props;
 ---
 <AppShell screen="projects" title="Projects" pageTitle={`${project.data.title} · Abraham Hernandez`} description={project.data.line}>
-  <div class="wrap"></div>
+  <ProjectsView projects={projects} active={project} />
 </AppShell>
