@@ -34,3 +34,22 @@ const j = job.data;
     .job > :global(.btn) { grid-column: 1 / -1; width: 100%; }
   }
 </style>
+
+<script>
+  import { onPage } from "../../scripts/lifecycle";
+
+  // Native <dialog>: showModal() gives focus trapping, Esc to close, an inert page behind it,
+  // and focus returns to the Details button on close.
+  onPage("[data-job-open]", (btn) => {
+    const dialog = document.getElementById(`job-${btn.dataset.jobOpen}`) as HTMLDialogElement | null;
+    if (!dialog) return;
+    btn.addEventListener("click", () => dialog.showModal());
+    dialog.addEventListener("click", (e) => {
+      // A click on the dialog element itself is a click on the backdrop.
+      if (e.target === dialog || (e.target as Element).closest("[data-close]")) dialog.close();
+    });
+    return () => {
+      if (dialog.open) dialog.close();
+    };
+  });
+</script>

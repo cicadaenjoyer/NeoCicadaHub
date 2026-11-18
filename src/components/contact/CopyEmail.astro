@@ -14,3 +14,36 @@ const { email } = Astro.props;
   .mailto { text-decoration-color: color-mix(in srgb, var(--navy) 35%, transparent); text-underline-offset: 3px; }
   .opt small.mail[data-email] { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .86rem; color: var(--navy); user-select: all; }
 </style>
+
+<script>
+  import { onPage } from "../../scripts/lifecycle";
+
+  const RESET_MS = 2000;
+
+  onPage("[data-copy-root]", (root) => {
+    const button = root.querySelector<HTMLElement>("[data-copy-email]")!;
+    const label = button.firstElementChild as HTMLElement;
+    const email = root.querySelector<HTMLElement>("[data-email]")!;
+    const original = label.textContent;
+    let timer: number | undefined;
+
+    button.addEventListener("click", async () => {
+      try {
+        if (!navigator.clipboard) throw new Error("Clipboard API unavailable");
+        await navigator.clipboard.writeText(email.textContent?.trim() ?? "");
+        label.textContent = "Copied!";
+      } catch {
+        // Clipboard blocked (insecure context, denied permission): select the address for a manual copy.
+        const range = document.createRange();
+        range.selectNodeContents(email);
+        const selection = getSelection();
+        selection?.removeAllRanges();
+        selection?.addRange(range);
+        label.textContent = "Selected, press Ctrl+C";
+      }
+      clearTimeout(timer);
+      timer = window.setTimeout(() => (label.textContent = original), RESET_MS);
+    });
+    return () => clearTimeout(timer);
+  });
+</script>

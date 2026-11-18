@@ -31,3 +31,37 @@ import SkillGrid from "./SkillGrid.astro";
   .pane h2 { margin: 0 0 12px; font-family: var(--f-disp); font-style: italic; font-weight: 800; font-size: 1.35rem; }
   .bio :global(p) { margin: 0 0 12px; line-height: 1.7; max-width: 68ch; }
 </style>
+
+<script>
+  import { onPage } from "../../scripts/lifecycle";
+
+  onPage("[data-tabs]", (root) => {
+    const tabs = [...root.querySelectorAll<HTMLElement>('[role="tab"]')];
+    const select = (i: number, focus: boolean) => {
+      tabs.forEach((tab, k) => {
+        const on = k === i;
+        tab.setAttribute("aria-selected", String(on));
+        tab.tabIndex = on ? 0 : -1;
+        const pane = document.getElementById(tab.getAttribute("aria-controls") ?? "");
+        if (pane) pane.hidden = !on;
+      });
+      if (focus) tabs[i]!.focus();
+    };
+    select(Math.max(0, tabs.findIndex((t) => t.getAttribute("aria-selected") === "true")), false);
+
+    const list = root.querySelector<HTMLElement>('[role="tablist"]')!;
+    list.addEventListener("click", (e) => {
+      const tab = (e.target as Element).closest<HTMLElement>('[role="tab"]');
+      if (tab) select(tabs.indexOf(tab), false);
+    });
+    list.addEventListener("keydown", (e) => {
+      const i = tabs.indexOf(document.activeElement as HTMLElement);
+      if (i < 0) return;
+      const n = tabs.length;
+      const next = { ArrowRight: (i + 1) % n, ArrowLeft: (i - 1 + n) % n, Home: 0, End: n - 1 }[e.key];
+      if (next === undefined) return;
+      e.preventDefault();
+      select(next, true);
+    });
+  });
+</script>

@@ -26,3 +26,28 @@ test("phone deep link scrolls detail into view", async ({ page }, info) => {
   await expect(page).toHaveURL("/projects/dice/#detail");
   await expect.poll(() => page.locator("#main").evaluate((m) => m.scrollTop)).toBeGreaterThan(0);
 });
+
+// Review Focus 2: the in-app back button never leaves the site.
+test("back on a directly-loaded page goes home", async ({ page }) => {
+  await page.goto("/work/");
+  await page.locator("[data-back]").click();
+  await expect(page).toHaveURL("/");
+});
+
+test("back after in-site navigation returns to previous screen", async ({ page }) => {
+  await page.goto("/projects/");
+  await page.locator(".dock a", { hasText: "About" }).click();
+  await expect(page).toHaveURL("/about/");
+  await page.locator("[data-back]").click();
+  await expect(page).toHaveURL("/projects/");
+  await page.locator("[data-back]").click(); // nothing earlier in the site: go Home
+  await expect(page).toHaveURL("/");
+});
+
+test("open dialog does not survive navigation", async ({ page }) => {
+  await page.goto("/work/");
+  await page.locator("[data-job-open]").first().click();
+  await page.locator("dialog[open] a", { hasText: "See my projects" }).click();
+  await expect(page).toHaveURL("/projects/");
+  await expect(page.locator("dialog[open]")).toHaveCount(0);
+});
