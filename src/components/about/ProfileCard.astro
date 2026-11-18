@@ -1,0 +1,24 @@
+---
+import { getEntry } from "astro:content";
+import Avatar from "../ui/Avatar.astro";
+import Facts from "../ui/Facts.astro";
+
+const site = (await getEntry("site", "main"))!.data;
+---
+<div class="panel idc">
+  <div class="band"><span>PROFILE</span></div>
+  <div class="pic"><Avatar size={160} alt="Abraham's pixel-art avatar" /></div>
+  <div class="who"><b>{site.name}</b><small>{site.role} · {site.employer}</small></div>
+  <Facts items={site.facts} />
+</div>
+
+<style>
+  .idc { overflow: hidden; }
+  .band { display: flex; justify-content: space-between; align-items: center; padding: 8px 14px; background: var(--navy-2); color: var(--panel); font-weight: 800; font-style: italic; letter-spacing: .04em; font-size: .8rem; }
+  .pic { display: grid; place-items: center; padding: 18px 0 12px; background: linear-gradient(180deg, var(--sky-2), var(--panel)); }
+  .pic :global(.ring) { width: 160px; height: 160px; }
+  .who { text-align: center; padding: 4px 14px 12px; }
+  .who b { display: block; font-size: 1.3rem; font-weight: 800; }
+  .who small { color: var(--ink-2); font-weight: 600; }
+  .idc :global(.facts) { margin: 0 14px 14px; }
+</style>

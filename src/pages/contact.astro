@@ -1,6 +1,25 @@
 ---
+import { getEntry } from "astro:content";
 import AppShell from "../layouts/AppShell.astro";
+import ChatThread from "../components/contact/ChatThread.astro";
+import ContactOption from "../components/contact/ContactOption.astro";
+import CopyEmail from "../components/contact/CopyEmail.astro";
+
+const site = (await getEntry("site", "main"))!.data;
+const linkedinIcon = `<path d="M4.5 3.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM3 9h3v12H3zM9 9h2.9v1.7c.4-.8 1.4-1.9 3.3-1.9 3.4 0 3.8 2.2 3.8 5V21h-3v-6.3c0-1.5 0-3.3-2-3.3s-2.1 1.5-2.1 3.2V21H9z"/>`;
+const githubIcon = `<path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 3 .8.1-.6.3-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.8v2.7c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/>`;
+const short = (url: string) => url.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, "");
 ---
 <AppShell screen="contact" title="Contact" pageTitle="Contact · Abraham Hernandez" description="Get in touch with Abraham Hernandez by email, LinkedIn or GitHub.">
-  <div class="wrap"></div>
+  <section class="s-contact wrap" aria-label="Contact">
+    <ChatThread>
+      <CopyEmail email={site.email} />
+      <ContactOption href={site.linkedin} title="Connect on LinkedIn" sub={short(site.linkedin)} icon={linkedinIcon} />
+      <ContactOption href={site.github} title="See my code on GitHub" sub={short(site.github)} icon={githubIcon} />
+    </ChatThread>
+  </section>
 </AppShell>
+
+<style>
+  .s-contact { display: grid; align-content: start; }
+</style>

@@ -1,0 +1,45 @@
+---
+import Avatar from "../ui/Avatar.astro";
+---
+<div class="panel talk">
+  <div class="talk-head">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C7 3 3 6.4 3 10.5c0 2.3 1.2 4.3 3.1 5.7L5 21l4.6-2.6c.8.2 1.6.3 2.4.3 5 0 9-3.4 9-7.6S17 3 12 3z"></path></svg>
+    Messages
+  </div>
+  <div class="thread">
+    <Avatar size={44} />
+    <div class="stack">
+      <span class="nm">Abraham</span>
+      <div class="msg">Thanks for stopping by!</div>
+      <div class="msg">If you'd like to work together or just say hi, pick one of the options below. I usually reply within a day.</div>
+    </div>
+  </div>
+  <div class="reply">
+    <div class="reply-h">Reply</div>
+    <div class="opts"><slot /></div>
+  </div>
+</div>
+
+<style>
+  .talk { width: 100%; max-width: 760px; margin: 0 auto; overflow: hidden; }
+  .talk-head { display: flex; align-items: center; gap: 10px; padding: 10px 16px; background: var(--pink); color: var(--panel); font-weight: 800; font-size: 1.1rem; }
+  .thread { padding: 18px 16px 8px; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 10px; }
+  .stack { display: grid; gap: 6px; justify-items: start; min-width: 0; }
+  .nm { font-weight: 800; font-size: .88rem; }
+  .msg { max-width: 100%; padding: 9px 13px; border-radius: 8px; background: var(--slate); color: var(--panel); line-height: 1.5; }
+  .reply { margin: 12px 16px 18px; border-radius: 8px; overflow: hidden; box-shadow: 0 0 0 1px var(--line); }
+  .reply-h { padding: 7px 14px; background: var(--panel-3); font-weight: 800; font-size: .88rem; color: var(--slate); display: flex; align-items: center; gap: 8px; }
+  .reply-h::before { content: ""; width: 4px; height: 16px; border-radius: 2px; background: var(--pink-2); }
+  .opts { display: grid; gap: 8px; padding: 12px; background: var(--panel-2); }
+  /* Option rows come from ContactOption and CopyEmail. */
+  .opts :global(.opt) { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 8px; text-decoration: none; text-align: left;
+    background: var(--panel); box-shadow: 0 0 0 1px var(--line), 0 2px 0 var(--line); transition: box-shadow .12s; }
+  .opts :global(a.opt:hover) { box-shadow: 0 0 0 2px var(--cyan), 0 2px 0 var(--line); }
+  .opts :global(.oi) { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--navy-2); color: var(--panel); }
+  .opts :global(.opt b) { display: block; font-weight: 800; }
+  .opts :global(.opt small) { display: block; color: var(--ink-2); font-weight: 600; overflow-wrap: anywhere; }
+  @container app (max-width: 639px) {
+    .opts :global(.opt) { grid-template-columns: 40px minmax(0, 1fr); }
+    .opts :global(.opt .btn) { grid-column: 1 / -1; }
+  }
+</style>

@@ -1,0 +1,11 @@
+---
+import Button from "../ui/Button.astro";
+
+interface Props { href: string; title: string; sub: string; icon: string }
+const { href, title, sub, icon } = Astro.props;
+---
+<a class="opt" href={href} target="_blank" rel="noopener" aria-label={`${title} (opens in a new tab)`}>
+  <span class="oi"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" set:html={icon} /></span>
+  <span><b>{title}</b><small>{sub}</small></span>
+  <Button variant="w" size="sm" as="span">Open ↗</Button>
+</a>
