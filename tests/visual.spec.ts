@@ -14,7 +14,8 @@ for (const r of ROUTES) {
     await expect(page).toHaveScreenshot({
       fullPage: true,
       animations: "disabled",
-      mask: [page.locator(".tag"), page.locator(".gstage video")],
+      // The avatar comes from GitHub at build time, so it changes whenever the profile picture does.
+      mask: [page.locator(".tag"), page.locator(".gstage video"), page.locator(".ring img, .av img")],
     });
   });
 }

@@ -7,4 +7,6 @@ export default defineConfig({
   output: "static",
   trailingSlash: "always",
   integrations: [sitemap()],
+  // The avatar is fetched from GitHub at build time (src/lib/github-avatar.ts).
+  image: { domains: ["avatars.githubusercontent.com"] },
 });

@@ -8,7 +8,6 @@ test("lobby content", async ({ page }) => {
   await expect(page.locator("[data-slide]:visible")).toHaveCount(1);
   await expect(page.locator("[data-slide]").first()).toHaveAttribute("href", "/projects/tabi/");
   await expect(page.locator(".nowcard")).toContainText("Software Programmer");
-  await expect(page.locator(".hello img")).toHaveCSS("image-rendering", "pixelated");
 });
 
 test("banner auto-advances and dots step", async ({ page }) => {
@@ -40,4 +39,12 @@ test.describe("reduced motion", () => {
     await page.clock.runFor(13000);
     await expect(page.locator("[data-slide]:visible")).toHaveAttribute("href", "/projects/tabi/");
   });
+});
+
+test("avatar is synced from GitHub at build time", async ({ page }) => {
+  await page.goto("/");
+  const img = page.locator(".hello img");
+  await expect(img).toHaveAttribute("src", /^\/_astro\//); // optimised local copy, not hot-linked
+  await expect.poll(() => img.evaluate((el: HTMLImageElement) => el.naturalWidth)).toBeGreaterThan(32);
+  await expect(img).not.toHaveCSS("image-rendering", "pixelated"); // an illustration, not pixel art
 });

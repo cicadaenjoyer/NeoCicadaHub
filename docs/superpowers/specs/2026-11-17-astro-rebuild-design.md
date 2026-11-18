@@ -321,7 +321,7 @@ These are the builder's calls, listed so the user can veto them:
 - A native `<dialog>` replaces the custom modal.
 - The canvas backdrop is kept rather than pre-rendered.
 - The CDB demo becomes a looping video.
-- The avatar is the local 32×32 PNG from v5, not the live GitHub avatar the README mentions.
+- ~~The avatar is the local 32×32 PNG from v5.~~ Changed after implementation at the user's request: the avatar is fetched from GitHub at build time (`src/lib/github-avatar.ts`), optimised and served locally, with the 32×32 pixel PNG as the fallback when GitHub can't be reached. The user will replace the GitHub picture with original art (the anti-goal on game art still applies).
 - Fonts are self-hosted, not loaded from Google Fonts.
 - Contact email stays `abehernandez@work.com`, as on the current live site.
 - `design/README.md`'s "Recommended stack" section is outdated (Howler, React islands, Tailwind). Update it to point to this spec when the rebuild lands.

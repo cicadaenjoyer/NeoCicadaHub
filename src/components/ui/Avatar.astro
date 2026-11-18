@@ -1,14 +1,27 @@
 ---
-// Pixel art: served as-is (never through <Image>, which would resample and blur it).
-import avatar from "../../assets/avatar-32.png";
+// Synced from GitHub at build time (redeploy to pick up a new picture), optimised and served
+// from this site. Falls back to the local 32×32 pixel avatar if GitHub can't be reached;
+// that one is pixel art, so it's served as-is and rendered pixelated (never resampled).
+import { getImage } from "astro:assets";
+import { getEntry } from "astro:content";
+import pixelAvatar from "../../assets/avatar-32.png";
+import { resolveGithubAvatar } from "../../lib/github-avatar";
 
 interface Props {
   size: 44 | 96 | 128 | 160;
   alt?: string;
 }
 const { size, alt = "" } = Astro.props;
+const site = (await getEntry("site", "main"))!.data;
+const remote = await resolveGithubAvatar(site.github);
+// The largest CSS size this element reaches is 160px (laptop lobby/About); 2× covers high-DPI screens.
+const synced = remote ? await getImage({ src: remote, width: 320, height: 320, format: "webp" }) : null;
 ---
 
 <span class={size === 44 ? "av" : "ring"}>
-  <img class="px" src={avatar.src} width={size} height={size} alt={alt} decoding="async" />
+  {synced ? (
+    <img src={synced.src} width={size} height={size} alt={alt} decoding="async" />
+  ) : (
+    <img class="px" src={pixelAvatar.src} width={size} height={size} alt={alt} decoding="async" />
+  )}
 </span>
