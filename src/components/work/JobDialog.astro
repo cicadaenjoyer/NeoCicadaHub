@@ -40,6 +40,12 @@ const titleId = `job-${job.id}-t`;
     <div class="card">
       <p>{j.desc}</p>
     </div>
+    {j.highlights?.map((h) => (
+      <div class="card">
+        <h3>{h.title}</h3>
+        <p>{h.body}</p>
+      </div>
+    ))}
     <SectionBar>Tools</SectionBar>
     <div class="chips tools">
       {j.tools.map((t) => (
@@ -50,9 +56,6 @@ const titleId = `job-${job.id}-t`;
   <div class="win-foot">
     <Button variant="w" data-close>
       Close
-    </Button>
-    <Button variant="y" href="/projects/">
-      See my projects
     </Button>
   </div>
 </dialog>
@@ -123,6 +126,11 @@ const titleId = `job-${job.id}-t`;
     border-radius: 6px;
     padding: 12px 14px;
     box-shadow: 0 1px 0 var(--line);
+  }
+  .card h3 {
+    margin: 0 0 4px;
+    font-size: 0.95rem;
+    font-weight: 800;
   }
   .card p {
     margin: 0;

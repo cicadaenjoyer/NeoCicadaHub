@@ -12,7 +12,7 @@ const { projects, activeId } = Astro.props;
 ---
 
 <div class="plist">
-  <SectionBar>{projects.length} projects · pick one</SectionBar>
+  <SectionBar>{projects.length} projects · newest first</SectionBar>
   {projects.map((p) => (
     <a class="prow" href={`/projects/${p.id}/#detail`} aria-current={p.id === activeId ? "page" : undefined}>
       <span class="th">

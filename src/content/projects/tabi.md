@@ -1,12 +1,12 @@
 ---
 title: Tabi
 line: WaniKani companion app for iOS and Android
-order: 1
+order: 3
 thumb: ../../assets/projects/tabi/icon.webp
 tone: light
 platform: iOS & Android
 team: Solo project
-stack: [React Native, TypeScript, WaniKani API]
+stack: [React Native, TypeScript]
 link: https://github.com/cicadaenjoyer/Tabi
 images:
   - { src: ../../assets/projects/tabi/2.webp, caption: "Dashboard with lessons, reviews and level progress" }

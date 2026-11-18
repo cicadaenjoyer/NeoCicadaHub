@@ -1,12 +1,12 @@
 ---
 title: C Database System
 line: A SQL database written from scratch in C
-order: 2
+order: 4
 thumb: ../../assets/projects/cdb/1.webp
 tone: dark
 platform: Command line
 team: Group project
-stack: [C, B+ trees, GDB]
+stack: [C, GDB]
 images:
   - src: ../../assets/projects/cdb/poster.webp
     caption: "Demo: creating a table, inserting rows and running queries"

@@ -1,9 +1,9 @@
 import { test, expect } from "@playwright/test";
 
-test("/projects/ shows Tabi and canonicalises", async ({ page }) => {
+test("/projects/ shows the newest project and canonicalises", async ({ page }) => {
   await page.goto("/projects/");
-  await expect(page.locator("#detail h2")).toHaveText("Tabi");
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", /\/projects\/tabi\/$/);
+  await expect(page.locator("#detail h2")).toHaveText("Shogun");
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", /\/projects\/shogun\/$/);
 });
 
 test("project route marks active row", async ({ page }) => {
@@ -48,4 +48,11 @@ test("gallery swaps between video and image", async ({ page }) => {
   await expect(page.locator(".gstage img")).toHaveAttribute("alt", "C Database System: Creating a table and inserting rows");
   await page.locator('[data-img="0"]').click();
   await expect(page.locator(".gstage video")).toHaveCount(1);
+});
+
+test("private projects explain why the code isn't public", async ({ page }) => {
+  await page.goto("/projects/fly/");
+  await expect(page.locator("#detail .note")).toHaveText("The repository belongs to the nonprofit, so it isn't public.");
+  await page.goto("/projects/dice/");
+  await expect(page.locator("#detail .note")).toHaveText("This was a class project, so the repository isn't public.");
 });

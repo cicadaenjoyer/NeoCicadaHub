@@ -1,12 +1,12 @@
 ---
 title: D&D Dice Store
 line: Storefront for browsing and designing dice
-order: 3
+order: 5
 thumb: ../../assets/projects/dice/1.webp
 tone: navy
 platform: Web
 team: Group project
-stack: [React, TypeScript, SHA hashing]
+stack: [React, TypeScript]
 images:
   - { src: ../../assets/projects/dice/1.webp, caption: "Browsing the dice catalog" }
 featured:

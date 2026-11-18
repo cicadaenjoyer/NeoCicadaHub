@@ -50,7 +50,7 @@ const { Content } = await render(project);
     ) : (
       <>
         <Button variant="off">Code is private</Button>
-        <span class="note">This was a class project, so the repository isn't public.</span>
+        <span class="note">{p.privateNote ?? "This was a class project, so the repository isn't public."}</span>
       </>
     )}
   </div>

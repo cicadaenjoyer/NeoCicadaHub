@@ -9,12 +9,14 @@ interface Props {
 const { project, eager = false } = Astro.props;
 const { featured, tone, thumb, images } = project.data;
 const loading = eager ? "eager" : "lazy";
-// Tabi's composition: app icon plus three phone screenshots (dashboard, kanji page, kanji reading).
-const phones = featured.art === "tabi" ? [images[0], images[1], images[3]].filter(Boolean) : [];
+// Mobile apps: app icon plus three phone screenshots. Tabi picks dashboard, kanji page and kanji
+// reading; "phones" takes the first three images and uses a neutral gradient instead of Tabi's pink.
+const phoneIdx = featured.art === "tabi" ? [0, 1, 3] : featured.art === "phones" ? [0, 1, 2] : [];
+const phones = phoneIdx.map((i) => images[i]).filter(Boolean);
 ---
 
-{featured.art === "tabi" ? (
-  <span class="art tabi">
+{phones.length ? (
+  <span class:list={["art", "art-app", `art-app-${featured.art}`]}>
     <Image class="icon" src={thumb} alt="" width={160} loading={loading} />
     <span class="phones">
       {phones.map((p) => (
@@ -42,11 +44,16 @@ const phones = featured.art === "tabi" ? [images[0], images[1], images[3]].filte
     gap: 3%;
     padding: 5% 6%;
   }
-  .art.tabi {
-    background: linear-gradient(135deg, #ff4fae, #c03cf0 60%, #7a5cff);
+  .art.art-app {
     justify-content: flex-start;
   }
-  .art.tabi .icon {
+  .art.art-app-tabi {
+    background: linear-gradient(135deg, #ff4fae, #c03cf0 60%, #7a5cff);
+  }
+  .art.art-app-phones {
+    background: linear-gradient(135deg, #2c5c68, #5f7fa0 55%, #9b5ba5);
+  }
+  .art.art-app .icon {
     height: 46%;
     width: auto;
     aspect-ratio: 1;

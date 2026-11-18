@@ -15,6 +15,8 @@ const projects = defineCollection({
       team: z.string(),
       stack: z.array(z.string()).min(1),
       link: z.url().optional(),
+      // Shown beside "Code is private" when there is no link; defaults to the class-project note.
+      privateNote: z.string().optional(),
       images: z
         .array(
           z.object({
@@ -25,7 +27,7 @@ const projects = defineCollection({
         )
         .min(1),
       featured: z.object({
-        art: z.enum(["tabi", "shot"]),
+        art: z.enum(["tabi", "shot", "phones"]),
         shot: image().optional(),
       }),
     }),
@@ -42,6 +44,11 @@ const jobs = defineCollection({
       order: z.number().int(),
       tools: z.array(z.string()).min(1),
       desc: z.string(),
+      // Keep dialogs skimmable: at most 4 highlights of ~60 words each.
+      highlights: z
+        .array(z.object({ title: z.string(), body: z.string().max(400) }))
+        .max(4)
+        .optional(),
     }),
 });
 

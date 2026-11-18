@@ -3,6 +3,8 @@ import { expect, type Page } from "@playwright/test";
 export const ROUTES: string[] = [
   "/",
   "/projects/",
+  "/projects/fly/",
+  "/projects/shogun/",
   "/projects/tabi/",
   "/projects/cdb/",
   "/projects/dice/",

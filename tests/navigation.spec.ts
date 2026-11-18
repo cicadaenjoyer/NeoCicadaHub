@@ -28,12 +28,14 @@ test("one carousel timer after leaving and returning; controls still work", asyn
   }
   expect(await timers()).toBe(1);
   await page.locator('[data-dot="2"]').click();
-  await expect(page.locator("[data-slide]:visible")).toHaveAttribute("href", "/projects/dice/");
+  await expect(page.locator("[data-slide]:visible")).toHaveAttribute("href", "/projects/tabi/");
   expect(await timers()).toBe(1);
 
   await page.locator(".dock a", { hasText: "Projects" }).click();
   await expect(page).toHaveURL("/projects/");
   expect(await timers()).toBe(0);
+  await page.locator(".prow", { hasText: "Tabi" }).click();
+  await expect(page).toHaveURL("/projects/tabi/#detail");
   await page.locator('[data-gstep="1"]').click();
   await expect(page.locator(".gcount")).toHaveText("2 / 5");
 });
@@ -78,7 +80,9 @@ test("back after in-site navigation returns to previous screen", async ({ page }
 test("open dialog does not survive navigation", async ({ page }) => {
   await page.goto("/work/");
   await page.locator("[data-job-open]").first().click();
-  await page.locator("dialog[open] a", { hasText: "See my projects" }).click();
-  await expect(page).toHaveURL("/projects/");
+  await expect(page.locator("dialog[open]")).toHaveCount(1);
+  await page.goto("/projects/");
+  await page.goBack();
+  await expect(page).toHaveURL("/work/");
   await expect(page.locator("dialog[open]")).toHaveCount(0);
 });

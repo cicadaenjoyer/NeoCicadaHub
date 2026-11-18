@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test("profile card and skills render", async ({ page }) => {
   await page.goto("/about/");
   await expect(page.locator(".idc .band")).toHaveText("PROFILE");
-  await expect(page.locator('#pane-skills svg[role="img"]')).toHaveCount(9);
+  await expect(page.locator('#pane-skills svg[role="img"]')).toHaveCount(12);
   await expect(page.locator('svg[aria-label="TypeScript logo"] path')).toHaveAttribute("fill", "#3178c6");
 });
 
@@ -16,18 +16,21 @@ test.describe("without JS", () => {
   });
 });
 
-test("skills keep the mockup's order", async ({ page }) => {
+test("skills keep their order", async ({ page }) => {
   await page.goto("/about/");
   await expect(page.locator("#pane-skills .nm")).toHaveText([
     "TypeScript",
+    "JavaScript",
     "Python",
+    "C#",
+    "PHP",
     "C",
-    "C++",
-    "Ruby",
     "React",
-    "Git",
+    "Next.js",
+    "Expo",
+    "Laravel",
+    "Firebase",
     "Docker",
-    "MySQL",
   ]);
 });
 
