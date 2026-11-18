@@ -1,0 +1,11 @@
+[
+  { "id": "typescript", "label": "TypeScript", "icon": "siTypescript", "color": "#3178c6" },
+  { "id": "python", "label": "Python", "icon": "siPython", "color": "#3776ab" },
+  { "id": "c", "label": "C", "icon": "siC", "color": "#5c6bc0" },
+  { "id": "cplusplus", "label": "C++", "icon": "siCplusplus", "color": "#00599c" },
+  { "id": "ruby", "label": "Ruby", "icon": "siRuby", "color": "#cc342d" },
+  { "id": "react", "label": "React", "icon": "siReact", "color": "#149eca" },
+  { "id": "git", "label": "Git", "icon": "siGit", "color": "#f05032" },
+  { "id": "docker", "label": "Docker", "icon": "siDocker", "color": "#2496ed" },
+  { "id": "mysql", "label": "MySQL", "icon": "siMysql", "color": "#4479a1" }
+]

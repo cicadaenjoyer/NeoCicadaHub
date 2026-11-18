@@ -1,0 +1,32 @@
+[
+  {
+    "id": "more-vang",
+    "title": "Software Programmer",
+    "org": "More Vang",
+    "logo": "../assets/logos/morevang.png",
+    "current": true,
+    "order": 1,
+    "tools": ["Laravel", "PDFKit", "JavaScript", "Python", "Chart.js", "Accessibility"],
+    "desc": "Engineered core Laravel features including page redirection, image uploads, and automated PDF workflows using PDFKit, JavaScript and Python. Built accessibility features for the PDF rendering engine so documents have a logical structure for visually impaired readers, and integrated Chart.js for dynamic charts in PDF templates."
+  },
+  {
+    "id": "id-tech",
+    "title": "Artificial Intelligence Instructor",
+    "org": "iD Tech",
+    "logo": "../assets/logos/idtech.png",
+    "current": false,
+    "order": 2,
+    "tools": ["Python", "Java", "Keras", "Matplotlib"],
+    "desc": "Led weekly sessions for 20+ students at Stanford, Berkeley and San Francisco State, teaching deep learning, computer vision and neural networks. Wrote lecture materials and hands-on coding projects in Python, Java, Matplotlib and Keras, and worked with camp staff to turn feedback into improvements for students and camp operations."
+  },
+  {
+    "id": "rit",
+    "title": "Supplemental Instruction Leader",
+    "org": "Rochester Institute of Technology",
+    "logo": "../assets/logos/rit.png",
+    "current": false,
+    "order": 3,
+    "tools": ["Python", "Java", "C", "Teaching"],
+    "desc": "Ran weekly study sessions for historically difficult CS courses, writing coding assessments and lecture material in Python, Java and C. Graded 100+ CS1 and CS2 assignments a week, from multithreaded Python to memory management in C, with detailed feedback on memory use, runtime, code structure and documentation."
+  }
+]
