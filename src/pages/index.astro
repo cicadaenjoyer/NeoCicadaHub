@@ -31,8 +31,7 @@ const current = (await getCollection("jobs")).find((j) => j.data.current)!;
       <DialogueBox
         name="Abraham"
         role={`${site.role} at ${site.employer}`}
-        greeting="Hi, welcome to my portfolio! This is where I keep the projects I've built and the places I've worked."
-        taglines={site.taglines}
+        greeting="Welcome to my portfolio. I really like building things, and especially love Blue Archive."
       />
       <Choices />
     </div>

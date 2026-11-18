@@ -3,9 +3,8 @@ interface Props {
   name: string;
   role: string;
   greeting: string;
-  taglines: string[];
 }
-const { name, role, greeting, taglines } = Astro.props;
+const { name, role, greeting } = Astro.props;
 ---
 
 <div class="dlg">
@@ -14,10 +13,6 @@ const { name, role, greeting, taglines } = Astro.props;
     <span>{role}</span>
   </div>
   <p>{greeting}</p>
-  <p class="tag" data-typewriter data-lines={JSON.stringify(taglines)}>
-    {taglines[0]}
-  </p>
-  <p class="sr" aria-live="polite" data-typewriter-live></p>
   <span class="next" aria-hidden="true"></span>
 </div>
 
@@ -59,13 +54,6 @@ const { name, role, greeting, taglines } = Astro.props;
     line-height: 1.6;
     max-width: 60ch;
   }
-  .dlg .tag {
-    color: #cfe8ff;
-    min-height: 1.6em;
-  }
-  .dlg .sr {
-    margin: 0;
-  }
   .next {
     position: absolute;
     right: 14px;
@@ -82,34 +70,3 @@ const { name, role, greeting, taglines } = Astro.props;
     }
   }
 </style>
-
-<script>
-  import { onPage } from "../../scripts/lifecycle";
-  import { prefersReducedMotion } from "../../scripts/motion";
-
-  const CHAR_MS = 35;
-
-  onPage("[data-typewriter]", (el) => {
-    const lines = JSON.parse(el.dataset.lines ?? "[]") as string[];
-    if (lines.length === 0) return;
-    const line = lines[Math.floor(Math.random() * lines.length)]!;
-    const live = el.parentElement?.querySelector<HTMLElement>("[data-typewriter-live]");
-    // Screen readers get the finished line once, not one announcement per character.
-    const finish = () => {
-      el.textContent = line;
-      if (live) live.textContent = line;
-    };
-    if (prefersReducedMotion()) return finish();
-
-    let i = 0;
-    el.textContent = "";
-    const timer = setInterval(() => {
-      el.textContent = line.slice(0, ++i);
-      if (i >= line.length) {
-        clearInterval(timer);
-        finish();
-      }
-    }, CHAR_MS);
-    return () => clearInterval(timer);
-  });
-</script>

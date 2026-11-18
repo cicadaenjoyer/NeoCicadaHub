@@ -62,7 +62,6 @@ const site = defineCollection({
     role: z.string(),
     employer: z.string(),
     subtitle: z.string(),
-    taglines: z.array(z.string()).min(1),
     email: z.email(),
     github: z.url(),
     linkedin: z.url(),
