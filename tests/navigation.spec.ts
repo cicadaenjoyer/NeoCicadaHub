@@ -1,17 +1,41 @@
 import { test, expect } from "@playwright/test";
 
-// Review Focus 1: leaving Home and coming back must leave exactly one carousel timer.
-test("one carousel timer after leaving and returning", async ({ page }) => {
-  await page.clock.install();
+// Review Focus 1: leaving Home and coming back leaves exactly one live carousel timer
+// (a leaked timer would tick on detached slides, invisibly — so count intervals directly),
+// and controls still respond after client-side navigation.
+test("one carousel timer after leaving and returning; controls still work", async ({ page }) => {
+  await page.addInitScript(() => {
+    const live = new Set<number>();
+    const set = window.setInterval.bind(window);
+    const clear = window.clearInterval.bind(window);
+    (window as any).__liveBannerTimers = () => live.size;
+    window.setInterval = ((fn: TimerHandler, ms?: number, ...rest: unknown[]) => {
+      const id = set(fn, ms, ...rest);
+      if (ms === 6000) live.add(id);
+      return id;
+    }) as typeof window.setInterval;
+    window.clearInterval = ((id?: number) => {
+      if (id !== undefined) live.delete(id);
+      clear(id);
+    }) as typeof window.clearInterval;
+  });
+  const timers = () => page.evaluate(() => (window as any).__liveBannerTimers() as number);
   await page.goto("/");
-  await page.locator(".dock a", { hasText: "Work" }).click();
-  await expect(page).toHaveURL("/work/");
-  await page.locator(".dock a", { hasText: "Home" }).click();
-  await expect(page).toHaveURL("/");
-  await expect(page.locator("[data-slide]:visible")).toHaveAttribute("href", "/projects/tabi/");
-  await page.clock.runFor(6100);
-  // Advanced once (cdb), not twice (dice).
-  await expect(page.locator("[data-slide]:visible")).toHaveAttribute("href", "/projects/cdb/");
+  expect(await timers()).toBe(1);
+  for (const label of ["Work", "Home", "About", "Home"]) {
+    await page.locator(".dock a", { hasText: label }).click();
+    await expect(page.locator(".dock a[aria-current='page']")).toHaveText(label);
+  }
+  expect(await timers()).toBe(1);
+  await page.locator('[data-dot="2"]').click();
+  await expect(page.locator("[data-slide]:visible")).toHaveAttribute("href", "/projects/dice/");
+  expect(await timers()).toBe(1);
+
+  await page.locator(".dock a", { hasText: "Projects" }).click();
+  await expect(page).toHaveURL("/projects/");
+  expect(await timers()).toBe(0);
+  await page.locator('[data-gstep="1"]').click();
+  await expect(page.locator(".gcount")).toHaveText("2 / 5");
 });
 
 // Review Focus 3: phone deep link scrolls the detail panel into view, also after in-site navigation.
@@ -30,6 +54,13 @@ test("phone deep link scrolls detail into view", async ({ page }, info) => {
 // Review Focus 2: the in-app back button never leaves the site.
 test("back on a directly-loaded page goes home", async ({ page }) => {
   await page.goto("/work/");
+  await page.locator("[data-back]").click();
+  await expect(page).toHaveURL("/");
+});
+
+test("back after tapping the current dock item still stays in the site", async ({ page }) => {
+  await page.goto("/work/");
+  await page.locator(".dock a", { hasText: "Work" }).click(); // same-page navigation: no history entry
   await page.locator("[data-back]").click();
   await expect(page).toHaveURL("/");
 });

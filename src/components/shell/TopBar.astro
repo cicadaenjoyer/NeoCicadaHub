@@ -154,17 +154,16 @@ const titleIsHeading = screen !== "home" && screen !== "notfound";
 <script>
   import { navigate } from "astro:transitions/client";
 
-  // In-app back button. document.referrer doesn't change on client-side navigations,
-  // so count in-site steps instead: forward adds one, back removes one.
-  // Lives in TopBar (on every page) so steps taken from Home are counted too.
-  let depth = 0;
-  document.addEventListener("astro:before-preparation", (e) => {
-    const direction = (e as Event & { direction?: string }).direction;
-    depth = direction === "back" ? Math.max(0, depth - 1) : depth + 1;
-  });
+  // In-app back button: go back only if there is an in-site page behind this one.
+  // Astro's router keeps an index in history.state that grows with each pushed entry, so
+  // comparing it with the index at arrival is exact — a same-page tap or an aborted
+  // navigation adds no entry and so can't send history.back() out of the site.
+  // (document.referrer doesn't change on client-side navigations, so it can't be used.)
+  const historyIndex = (): number => (history.state as { index?: number } | null)?.index ?? 0;
+  const arrivalIndex = historyIndex();
   document.addEventListener("click", (e) => {
     if (!(e.target as Element).closest("[data-back]")) return;
-    if (depth > 0) history.back();
+    if (historyIndex() > arrivalIndex) history.back();
     else navigate("/");
   });
 </script>

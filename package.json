@@ -10,7 +10,7 @@
     "preview": "astro preview",
     "test": "playwright test",
     "format": "prettier --write .",
-    "deploy": "yarn build && gh-pages -d dist"
+    "deploy": "yarn build && gh-pages -d dist --nojekyll"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
