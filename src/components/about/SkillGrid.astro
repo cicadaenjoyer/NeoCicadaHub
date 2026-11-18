@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import * as simpleIcons from "simple-icons";
 
 const icons = simpleIcons as unknown as Record<string, { path: string } | undefined>;
-const skills = await getCollection("skills");
+const skills = (await getCollection("skills")).sort((a, b) => a.data.order - b.data.order);
 for (const s of skills) {
   if (!icons[s.data.icon]) throw new Error(`Unknown simple-icons export "${s.data.icon}" for skill "${s.id}"`);
 }

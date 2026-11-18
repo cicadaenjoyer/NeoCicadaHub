@@ -15,3 +15,8 @@ test.describe("without JS", () => {
     await expect(page.locator("#pane-skills")).toBeVisible();
   });
 });
+
+test("skills keep the mockup's order", async ({ page }) => {
+  await page.goto("/about/");
+  await expect(page.locator("#pane-skills .nm")).toHaveText(["TypeScript", "Python", "C", "C++", "Ruby", "React", "Git", "Docker", "MySQL"]);
+});

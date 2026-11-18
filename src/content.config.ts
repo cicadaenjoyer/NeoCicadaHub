@@ -51,6 +51,7 @@ const skills = defineCollection({
     label: z.string(),
     icon: z.string().regex(/^si[A-Z]/, "simple-icons export name, e.g. siTypescript"),
     color: z.string().regex(/^#[0-9a-f]{6}$/i),
+    order: z.number().int(),
   }),
 });
 
